@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stitch Lab AI — Arslan Khan, AI Automation Architect</title>
+<meta name="description" content="Arslan Khan — AI Automation Architect. Building autonomous agents, computer-vision pipelines, and cross-platform integrations that remove manual work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#08080c;
+  --void-2:#0e0e14;
+  --paper:#edeae3;
+  --paper-dim:#b8b6b0;
+  --thread:#ff6b35;
+  --thread-dim:#c9502099;
+  --circuit:#3d9970;
+  --grey:#8892a6;
+  --line:#26262f;
+  --radius:2px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+}
+body{
+  background:var(--void);
+  color:var(--paper);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+::selection{background:var(--thread);color:var(--void);}
+
+/* ===== Utility ===== */
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.display{font-family:'Space Grotesk',sans-serif;}
+a{color:inherit;text-decoration:none;}
+a:focus-visible, button:focus-visible{outline:2px solid var(--thread); outline-offset:3px;}
+img{max-width:100%;display:block;}
+
+/* ===== Stitch thread background line ===== */
+#stitch-canvas{
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events:none; z-index:1; opacity:0.55;
+}
+
+/* ===== Nav ===== */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  padding:22px 0;
+  backdrop-filter:blur(12px);
+  background:rgba(8,8,12,0.72);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+nav.scrolled{border-bottom-color:var(--line);}
+nav .wrap{display:flex; justify-content:space-between; align-items:center;}
+.logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700; font-size:1.05rem;
+  letter-spacing:-0.02em;
+  display:flex; align-items:center; gap:8px;
+}
+.logo-mark{
+  width:18px;height:18px;
+  border:1.5px solid var(--thread);
+  border-radius:50%;
+  position:relative;
+}
+.logo-mark::after{
+  content:'';
+  position:absolute; top:50%; left:50%;
+  width:8px;height:1.5px;background:var(--thread);
+  transform:translate(-50%,-50%) rotate(45deg);
+}
+.nav-links{display:flex; gap:36px; align-items:center;}
+.nav-links a{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.8rem; color:var(--grey);
+  transition:color .2s;
+  position:relative;
+}
+.nav-links a:hover{color:var(--paper);}
+.nav-cta{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.78rem;
+  border:1px solid var(--thread);
+  color:var(--thread) !important;
+  padding:9px 18px;
+  border-radius:var(--radius);
+  transition:all .2s;
+}
+.nav-cta:hover{background:var(--thread); color:var(--void) !important;}
+.nav-toggle{display:none; background:none; border:none; color:var(--paper); font-size:1.5rem; cursor:pointer;}
+
+/* ===== Hero ===== */
+.hero{
+  min-height:100svh;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; z-index:2;
+  padding-top:100px; padding-bottom:60px;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.78rem;
+  color:var(--circuit);
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:28px;
+  opacity:0; animation:fadeUp .7s ease forwards;
+}
+.eyebrow .dot{width:6px;height:6px;background:var(--circuit);border-radius:50%; animation:pulse 2s infinite;}
+.hero h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:clamp(2.6rem, 7vw, 5.4rem);
+  line-height:1.02;
+  letter-spacing:-0.03em;
+  max-width:920px;
+  opacity:0; animation:fadeUp .8s ease .1s forwards;
+}
+.hero h1 .accent{color:var(--thread); font-style:italic; font-weight:500;}
+.hero-sub{
+  margin-top:28px;
+  font-size:1.15rem;
+  color:var(--grey);
+  max-width:560px;
+  opacity:0; animation:fadeUp .8s ease .25s forwards;
+}
+.hero-meta{
+  margin-top:44px;
+  display:flex; flex-wrap:wrap; gap:14px;
+  opacity:0; animation:fadeUp .8s ease .4s forwards;
+}
+.chip{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.74rem;
+  border:1px solid var(--line);
+  padding:8px 14px;
+  border-radius:var(--radius);
+  color:var(--paper-dim);
+  display:flex; align-items:center; gap:8px;
+}
+.hero-actions{
+  margin-top:44px;
+  display:flex; gap:16px; flex-wrap:wrap;
+  opacity:0; animation:fadeUp .8s ease .55s forwards;
+}
+.btn{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.85rem;
+  padding:15px 28px;
+  border-radius:var(--radius);
+  cursor:pointer;
+  display:inline-flex; align-items:center; gap:10px;
+  transition:all .25s cubic-bezier(.2,.8,.2,1);
+  border:1px solid transparent;
+}
+.btn-fill{background:var(--thread); color:var(--void); font-weight:500;}
+.btn-fill:hover{transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(255,107,53,0.5);}
+.btn-line{border-color:var(--line); color:var(--paper);}
+.btn-line:hover{border-color:var(--paper-dim); background:rgba(255,255,255,0.03);}
+
+@keyframes fadeUp{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.3;}}
+
+/* ===== Section shell ===== */
+section{position:relative; z-index:2; padding:130px 0;}
+.section-head{margin-bottom:60px; max-width:680px;}
+.section-num{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.78rem; color:var(--thread);
+  margin-bottom:16px; display:block;
+}
+.section-head h2{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.9rem, 4vw, 2.8rem);
+  font-weight:600; letter-spacing:-0.02em;
+  line-height:1.15;
+}
+.section-head p{margin-top:18px; color:var(--grey); font-size:1.05rem; max-width:560px;}
+
+/* ===== Stitched divider ===== */
+.stitch-divider{
+  width:100%; height:2px; position:relative; margin:0 auto;
+  background-image:repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 20px);
+}
+
+/* ===== Stats strip ===== */
+.stats{
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  padding:50px 0;
+}
+.stats .wrap{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+.stat h3{
+  font-family:'Space Grotesk',sans-serif; font-size:clamp(1.8rem,3.5vw,2.6rem);
+  color:var(--thread); font-weight:700; letter-spacing:-0.02em;
+}
+.stat p{font-family:'IBM Plex Mono',monospace; font-size:0.76rem; color:var(--grey); margin-top:8px;}
+
+/* ===== Work / Projects ===== */
+.project{
+  border:1px solid var(--line);
+  border-radius:6px;
+  overflow:hidden;
+  margin-bottom:28px;
+  background:var(--void-2);
+  transition:border-color .3s;
+}
+.project:hover{border-color:#3a3a46;}
+.project-grid{display:grid; grid-template-columns:1.1fr 1fr;}
+.project-grid.reverse{grid-template-columns:1fr 1.1fr;}
+.project-grid.reverse .project-media{order:2;}
+.project-media{
+  position:relative; overflow:hidden; min-height:320px;
+  background:#111;
+}
+.project-media img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1);
+}
+.project:hover .project-media img{transform:scale(1.04);}
+.project-media-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5) 100%);
+}
+.project-tag-float{
+  position:absolute; bottom:16px; left:16px;
+  font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
+  background:rgba(8,8,12,0.85); border:1px solid var(--line);
+  padding:6px 12px; border-radius:var(--radius); color:var(--paper-dim);
+}
+.project-body{padding:44px 40px; display:flex; flex-direction:column; justify-content:center;}
+.project-index{font-family:'IBM Plex Mono',monospace; color:var(--thread); font-size:0.78rem; margin-bottom:14px;}
+.project-body h3{
+  font-family:'Space Grotesk',sans-serif; font-size:1.6rem; font-weight:600;
+  letter-spacing:-0.01em; margin-bottom:14px;
+}
+.project-body p{color:var(--grey); font-size:0.98rem; margin-bottom:22px;}
+.project-stack{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+.stack-pill{
+  font-family:'IBM Plex Mono',monospace; font-size:0.68rem;
+  padding:5px 11px; border:1px solid var(--line); border-radius:20px;
+  color:var(--circuit);
+}
+.project-link{
+  font-family:'IBM Plex Mono',monospace; font-size:0.8rem;
+  display:inline-flex; align-items:center; gap:8px; color:var(--paper);
+  width:fit-content;
+  border-bottom:1px solid var(--line); padding-bottom:3px;
+  transition:border-color .2s, gap .2s;
+}
+.project-link:hover{border-color:var(--thread); gap:12px;}
+
+/* Secondary project cards (smaller grid) */
+.mini-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:20px;
+}
+.mini-card{
+  border:1px solid var(--line); border-radius:6px; padding:28px 26px;
+  background:var(--void-2);
+  transition:transform .3s, border-color .3s;
+}
+.mini-card:hover{transform:translateY(-4px); border-color:#3a3a46;}
+.mini-card .mono{color:var(--thread); font-size:0.7rem; display:block; margin-bottom:14px;}
+.mini-card h4{font-family:'Space Grotesk',sans-serif; font-size:1.15rem; margin-bottom:10px; font-weight:600;}
+.mini-card p{color:var(--grey); font-size:0.88rem;}
+
+/* ===== Skills / stitched thread rail ===== */
+.skills-rail{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:6px; overflow:hidden;}
+.skill-cell{background:var(--void-2); padding:30px 24px;}
+.skill-cell .mono{font-size:0.68rem; color:var(--thread); display:block; margin-bottom:12px;}
+.skill-cell ul{list-style:none;}
+.skill-cell li{
+  font-size:0.9rem; color:var(--paper-dim); padding:6px 0;
+  border-bottom:1px dashed var(--line);
+}
+.skill-cell li:last-child{border-bottom:none;}
+
+/* ===== Timeline ===== */
+.timeline{position:relative; padding-left:32px; border-left:1px solid var(--line);}
+.tl-item{position:relative; padding-bottom:52px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  position:absolute; left:-37px; top:4px;
+  width:11px; height:11px; border-radius:50%;
+  background:var(--void); border:2px solid var(--thread);
+}
+.tl-date{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--thread); margin-bottom:8px; display:block;}
+.tl-item h4{font-family:'Space Grotesk',sans-serif; font-size:1.2rem; font-weight:600; margin-bottom:4px;}
+.tl-item .org{color:var(--grey); font-size:0.88rem; margin-bottom:12px; font-style:italic;}
+.tl-item ul{padding-left:18px; color:var(--paper-dim); font-size:0.92rem;}
+.tl-item li{margin-bottom:6px;}
+
+/* ===== Signal / testimonial-style quote from LinkedIn post ===== */
+.signal{
+  border:1px solid var(--line); border-radius:8px;
+  padding:56px; background:linear-gradient(135deg, var(--void-2), var(--void));
+  position:relative; overflow:hidden;
+}
+.signal::before{
+  content:'"'; position:absolute; top:-10px; left:20px;
+  font-family:'Space Grotesk',sans-serif; font-size:9rem; color:var(--line);
+  line-height:1; z-index:0;
+}
+.signal-content{position:relative; z-index:1;}
+.signal p{font-family:'Space Grotesk',sans-serif; font-size:clamp(1.2rem,2.4vw,1.6rem); font-weight:500; line-height:1.45; letter-spacing:-0.01em;}
+.signal p .hl{color:var(--thread);}
+.signal-foot{margin-top:28px; display:flex; align-items:center; gap:14px;}
+.signal-foot img{width:44px;height:44px;border-radius:50%;object-fit:cover; border:1px solid var(--line);}
+.signal-foot .name{font-weight:600; font-size:0.92rem;}
+.signal-foot .role{font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:var(--grey);}
+
+/* ===== Contact ===== */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+.contact-lead h2{
+  font-family:'Space Grotesk',sans-serif; font-size:clamp(2.2rem,5vw,3.4rem);
+  font-weight:600; letter-spacing:-0.02em; line-height:1.08;
+}
+.contact-lead p{margin-top:22px; color:var(--grey); font-size:1.05rem; max-width:440px;}
+.contact-list{margin-top:40px; display:flex; flex-direction:column; gap:2px;}
+.contact-row{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 0; border-bottom:1px solid var(--line);
+  transition:padding-left .25s;
+}
+.contact-row:hover{padding-left:8px;}
+.contact-row .label{font-family:'IBM Plex Mono',monospace; font-size:0.76rem; color:var(--grey);}
+.contact-row .value{font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:500;}
+.contact-row .arrow{color:var(--thread); opacity:0; transition:opacity .25s;}
+.contact-row:hover .arrow{opacity:1;}
+
+.avail-card{
+  border:1px solid var(--circuit); border-radius:8px; padding:36px;
+  background:rgba(61,153,112,0.05);
+}
+.avail-card .status{display:flex; align-items:center; gap:10px; margin-bottom:20px;}
+.avail-card .status .dot{width:8px;height:8px;background:var(--circuit); border-radius:50%; animation:pulse 2s infinite;}
+.avail-card .status span{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:var(--circuit);}
+.avail-card p{color:var(--paper-dim); font-size:0.95rem; margin-bottom:26px;}
+.avail-card .btn-fill{width:100%; justify-content:center;}
+
+/* ===== Footer ===== */
+footer{border-top:1px solid var(--line); padding:40px 0; position:relative; z-index:2;}
+footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+footer p{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--grey);}
+.footer-links{display:flex; gap:24px;}
+.footer-links a{font-family:'IBM Plex Mono',monospace; font-size:0.74rem; color:var(--grey); transition:color .2s;}
+.footer-links a:hover{color:var(--thread);}
+
+/* ===== Reveal on scroll ===== */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* ===== Responsive ===== */
+@media (max-width: 860px){
+  .wrap{padding:0 22px;}
+  .nav-links{
+    position:fixed; top:0; right:0; height:100vh; width:78%; max-width:320px;
+    background:var(--void-2); flex-direction:column; justify-content:center; align-items:flex-start;
+    padding:40px; gap:28px; transform:translateX(100%); transition:transform .35s ease;
+    border-left:1px solid var(--line); z-index:99;
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-toggle{display:block; z-index:101;}
+  .nav-links a{font-size:1rem;}
+  .stats .wrap{grid-template-columns:repeat(2,1fr); gap:32px 20px;}
+  .project-grid, .project-grid.reverse{grid-template-columns:1fr;}
+  .project-grid.reverse .project-media{order:0;}
+  .project-media{min-height:220px;}
+  .project-body{padding:32px 24px;}
+  .mini-grid{grid-template-columns:1fr;}
+  .skills-rail{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr; gap:44px;}
+  section{padding:80px 0;}
+  .hero{padding-top:110px;}
+  .signal{padding:32px 24px;}
+}
+@media (max-width: 480px){
+  .skills-rail{grid-template-columns:1fr;}
+  .hero-actions{flex-direction:column; align-items:stretch;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="stitch-canvas"></canvas>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="logo-mark"></span>Stitch Lab</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#work">Work</a>
+      <a href="#stack">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>OPEN TO WORK — REMOTE / PESHAWAR</div>
+    <h1>I stitch AI agents, vision pipelines &amp; APIs into <span class="accent">systems that run themselves.</span></h1>
+    <p class="hero-sub">Arslan Khan — AI Automation Architect building deterministic, LLM-powered systems in Python, n8n, and OpenCV. From lead-gen agents to computer-vision compositing engines, I remove the manual bottleneck.</p>
+    <div class="hero-meta">
+      <span class="chip">📍 Peshawar, Pakistan</span>
+      <span class="chip">🧠 Claude · GPT · Llama · Gemma</span>
+      <span class="chip">⚙️ n8n · LangGraph · RAG</span>
+      <span class="chip">👁️ OpenCV · rembg · NumPy</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-fill">See the work ↓</a>
+      <a href="mailto:arslankhanwazir@gmail.com" class="btn btn-line">arslankhanwazir@gmail.com</a>
+    </div>
+  </div>
+</header>
+
+<section id="proof" class="reveal">
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><h3>99%</h3><p class="mono">MCQ PREDICTION ACCURACY</p></div>
+      <div class="stat"><h3>85%+</h3><p class="mono">SEMANTIC JOB-MATCH RATE</p></div>
+      <div class="stat"><h3>90%</h3><p class="mono">ADMIN FRICTION ELIMINATED</p></div>
+      <div class="stat"><h3>4K</h3><p class="mono">RENDER RESOLUTION, ONE CLICK</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">01 / SELECTED WORK</span>
+      <h2>Systems built to remove the human bottleneck.</h2>
+      <p>Every project below started as a manual, repetitive process. Each one now runs without me in the loop.</p>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-grid">
+        <div class="project-media">
+          <img src="assets/bmw-front.jpg" alt="BMW M4 with studio-composited background, grounded reflection and matched lighting, generated by CarBG Studio Pro" loading="lazy">
+          <div class="project-media-overlay"></div>
+          <span class="project-tag-float mono">Rendered by CarBG Studio Pro — zero manual retouching</span>
+        </div>
+        <div class="project-body">
+          <span class="project-index mono">FEATURED — 01</span>
+          <h3>CarBG Studio Pro</h3>
+          <p>A physically-based compositing engine that takes one real car photo and returns a studio-quality shot — matched lighting, grounded shadows, zero-gap floor reflections — at up to 4K. What agencies quote $30K–$400K and 5–10 days for, this does in seconds, for free.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Python</span>
+            <span class="stack-pill">OpenCV</span>
+            <span class="stack-pill">rembg / ISNet</span>
+            <span class="stack-pill">NumPy</span>
+            <span class="stack-pill">Tkinter</span>
+          </div>
+          <a href="#contact" class="project-link">Ask about the pipeline →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-grid reverse">
+        <div class="project-media">
+          <img src="assets/porsche-gt3.jpg" alt="Porsche GT3 RS composited onto a clean studio floor with automatic AI background replacement" loading="lazy">
+          <div class="project-media-overlay"></div>
+          <span class="project-tag-float mono">Per-tyre ground-contact detection, auto-oriented shadows</span>
+        </div>
+        <div class="project-body">
+          <span class="project-index mono">FEATURED — 02</span>
+          <h3>KPPSC Prep Pro</h3>
+          <p>The first AI-integrated, self-healing MCQ engine built for Khyber Pakhtunkhwa Public Service Commission candidates — scaled to 5,000+ questions across 14+ subjects. A live Claude-powered tutor explains every answer on demand, with timed simulation, negative marking, and a Firebase licensing layer underneath.</p>
+          <div class="project-stack">
+            <span class="stack-pill">Claude API</span>
+            <span class="stack-pill">JavaScript</span>
+            <span class="stack-pill">Firebase</span>
+            <span class="stack-pill">JSON content engine</span>
+          </div>
+          <a href="#contact" class="project-link">Ask about the pipeline →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-grid reveal">
+      <div class="mini-card">
+        <span class="mono">AUTONOMOUS OUTREACH</span>
+        <h4>Executive Outreach Engine</h4>
+        <p>Aggregates cross-platform job data (Adzuna, LinkedIn), runs 85%+ semantic matching against experience, and dispatches hyper-personalized outreach straight to Gmail — with rate-limiting and proxy-rotation so it never gets blacklisted.</p>
+      </div>
+      <div class="mini-card">
+        <span class="mono">ZERO-HALLUCINATION AGENT</span>
+        <h4>Autopilot Onboarding Engine</h4>
+        <p>Triggered by HubSpot "Closed Won." A local Ollama model converts unstructured sales notes into structured JSON task schemas, auto-building projects in ClickUp with priority-weighting — cutting 90% of manual admin.</p>
+      </div>
+      <div class="mini-card">
+        <span class="mono">PROCUREMENT INTELLIGENCE</span>
+        <h4>Tender &amp; BoQ Grading System</h4>
+        <p>Ingests and parses complex tender/bid documentation at Vertex Traders, converting unstructured text into structured decision-making matrices for automated vendor-vetting and procurement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="signal">
+  <div class="wrap">
+    <div class="signal reveal">
+      <div class="signal-content">
+        <p>"Every polished car photo you scroll past went through the same pipeline: build a 3D model, wait 5–10 days per render. <span class="hl">I built something different</span> — one real photo in, studio-quality shot out, in seconds, for free."</p>
+        <div class="signal-foot">
+          <img src="assets/avatar.jpg" alt="Arslan Khan">
+          <div>
+            <div class="name">Arslan Khan</div>
+            <div class="role mono">from a recent build note</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">02 / THE STACK</span>
+      <h2>What's actually under the hood.</h2>
+    </div>
+    <div class="skills-rail reveal">
+      <div class="skill-cell">
+        <span class="mono">CORE</span>
+        <ul><li>Python</li><li>JavaScript</li><li>SQL</li><li>REST API design</li></ul>
+      </div>
+      <div class="skill-cell">
+        <span class="mono">AI &amp; AGENTS</span>
+        <ul><li>LangGraph</li><li>RAG</li><li>Prompt Engineering</li><li>Multi-Agent Systems</li><li>n8n</li></ul>
+      </div>
+      <div class="skill-cell">
+        <span class="mono">VISION &amp; IMAGING</span>
+        <ul><li>OpenCV</li><li>NumPy / Pillow</li><li>rembg / U2Net / ISNet</li><li>Compositing pipelines</li></ul>
+      </div>
+      <div class="skill-cell">
+        <span class="mono">INTEGRATION</span>
+        <ul><li>HubSpot API</li><li>ClickUp API</li><li>Gmail / Drive API</li><li>Firebase</li><li>Vector DBs</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">03 / EXPERIENCE</span>
+      <h2>Where the work has lived.</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-date mono">MAR 2026 — PRESENT</span>
+        <h4>Managing Director / AI Automation Architect</h4>
+        <div class="org">Vertex Traders &amp; Supplier, Peshawar</div>
+        <ul>
+          <li>Built an enterprise AI ecosystem to ingest and grade tender/bid documentation into structured decision matrices</li>
+          <li>Automated regional procurement channels and vendor-vetting through intelligent middleware</li>
+          <li>Shipped an AI-assisted candidate screening tool with browser-based video capture and n8n webhook handoff</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-date mono">JAN 2026 — APR 2026</span>
+        <h4>Automation Lead / Customer Relations Officer</h4>
+        <div class="org">Xphyre / BlueKarrots (Remote)</div>
+        <ul>
+          <li>Deployed an automated AI lead-capture pipeline via HubSpot API — manual CRM entry reduced to zero</li>
+          <li>Directed cross-border client engagement, syncing behavioral metrics with automated sales funnels</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-date mono">APR 2022 — APR 2025</span>
+        <h4>Grievances &amp; Operations Specialist</h4>
+        <div class="org">Joint Institutional Initiative (EAD, NADRA, PDMA)</div>
+        <ul>
+          <li>Audited centralized Grievance Redressal Mechanisms across decentralized hubs against World Bank standards</li>
+          <li>Managed performance throughput for multi-tier facilitation teams</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-lead reveal">
+        <h2>Have something that needs automating?</h2>
+        <p>If it's repetitive, rule-based, or eating hours every week — it's probably automatable. Tell me what it is.</p>
+        <div class="contact-list">
+          <a href="mailto:arslankhanwazir@gmail.com" class="contact-row">
+            <span class="label mono">EMAIL</span>
+            <span class="value">arslankhanwazir@gmail.com</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="tel:+923358074323" class="contact-row">
+            <span class="label mono">PHONE</span>
+            <span class="value">+92 335 8074323</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="https://linkedin.com/in/arslankhanwazir" target="_blank" rel="noopener" class="contact-row">
+            <span class="label mono">LINKEDIN</span>
+            <span class="value">/in/arslankhanwazir</span>
+            <span class="arrow">→</span>
+          </a>
+          <a href="https://contra.com/arslan_khan_4tkkmb7r" target="_blank" rel="noopener" class="contact-row">
+            <span class="label mono">CONTRA</span>
+            <span class="value">Hire on Contra</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="avail-card">
+          <div class="status"><span class="dot"></span><span>OPEN TO WORK — ON-SITE · HYBRID · REMOTE</span></div>
+          <p>Currently taking on new automation builds, AI agent projects, and computer-vision work. Based in Peshawar, working with clients globally.</p>
+          <a href="mailto:arslankhanwazir@gmail.com?subject=Let's%20build%20something" class="btn btn-fill">Start a conversation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="mono">© 2026 Arslan Khan — Stitch Lab AI</p>
+    <div class="footer-links">
+      <a href="mailto:arslankhanwazir@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/arslankhanwazir" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://contra.com/arslan_khan_4tkkmb7r" target="_blank" rel="noopener">Contra</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ===== Nav scroll state =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+}, {passive:true});
+
+// ===== Mobile nav toggle =====
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  navToggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  navToggle.textContent = '☰';
+}));
+
+// ===== Scroll reveal =====
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+revealEls.forEach(el => io.observe(el));
+
+// ===== Stitch thread canvas — a single hand-drawn-feeling line that
+// weaves down the page, redrawn on scroll/resize. Respects reduced motion. =====
+(function(){
+  const canvas = document.getElementById('stitch-canvas');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w, h, docH;
+  let mouseX = 0.5;
+
+  function resize(){
+    w = window.innerWidth;
+    h = window.innerHeight;
+    docH = document.documentElement.scrollHeight;
+    canvas.width = w * devicePixelRatio;
+    canvas.height = h * devicePixelRatio;
+    canvas.style.width = w+'px';
+    canvas.style.height = h+'px';
+    ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+  }
+
+  function draw(){
+    const scrollY = window.scrollY;
+    const scrollFrac = scrollY / Math.max(1, docH - h);
+    ctx.clearRect(0,0,w,h);
+
+    // Thread path: gentle sine wave down the viewport, drifting with mouseX and scroll
+    ctx.beginPath();
+    ctx.lineWidth = 1.4;
+    ctx.strokeStyle = 'rgba(255,107,53,0.16)';
+    ctx.setLineDash([7,9]);
+
+    const baseX = w * (0.86 - mouseX * 0.06);
+    const amp = w * 0.05;
+    const steps = 40;
+    for(let i=0;i<=steps;i++){
+      const t = i/steps;
+      const y = t*h;
+      const x = baseX + Math.sin(t*6 + scrollFrac*8) * amp;
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    // Secondary faint thread, circuit green, offset
+    ctx.beginPath();
+    ctx.strokeStyle = 'rgba(61,153,112,0.10)';
+    ctx.setLineDash([2,14]);
+    const baseX2 = w * (0.12 + mouseX*0.04);
+    for(let i=0;i<=steps;i++){
+      const t = i/steps;
+      const y = t*h;
+      const x = baseX2 + Math.cos(t*5 - scrollFrac*6) * (amp*0.7);
+      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+  }
+
+  function loop(){
+    draw();
+    if(!reduceMotion) requestAnimationFrame(loop);
+  }
+
+  window.addEventListener('resize', () => { resize(); if(reduceMotion) draw(); }, {passive:true});
+  window.addEventListener('scroll', () => { if(reduceMotion) draw(); }, {passive:true});
+  window.addEventListener('mousemove', (e) => { mouseX = e.clientX / window.innerWidth; }, {passive:true});
+
+  resize();
+  if(reduceMotion){ draw(); } else { loop(); }
+})();
+</script>
+
+</body>
+</html>
