@@ -1139,8 +1139,8 @@
       const rect = contactCard.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      const moveX = x * 36;
-      const moveY = y * 24;
+      const moveX = x * 40;
+      const moveY = y * 32;
       contactVideoEl.style.transform = `scale(1.1) translate(${-moveX}px, ${-moveY}px)`;
     });
     contactCard.addEventListener('mouseleave', () => {
