@@ -48,36 +48,55 @@
 
   /* ---------- styles ---------- */
   const css = `
+  /* ===== Modern circular launcher (replaces old terminal pill) ===== */
   #sl-agent-toggle{
     position:fixed; right:24px; bottom:24px; z-index:9997;
-    display:flex; align-items:center; gap:10px;
-    padding:12px 18px 12px 14px; border-radius:100px;
-    background:rgba(4,8,16,.72); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-    border:1px solid var(--card-border, rgba(111,178,255,.16));
-    cursor:pointer; color:var(--paper,#EAF2FF); font-size:13px;
-    box-shadow:0 8px 28px rgba(47,184,255,.18);
-    transition:transform .18s cubic-bezier(.34,1.56,.64,1), border-color .2s, box-shadow .3s;
+    width:60px; height:60px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(140deg, var(--neon,#2FB8FF), var(--neon-2,#6E5EFF));
+    border:none; cursor:pointer;
+    box-shadow:0 0 0 1px rgba(47,184,255,.35), 0 10px 28px rgba(47,184,255,.35);
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .3s;
+    animation:slBreathe 3.2s ease-in-out infinite;
   }
-  #sl-agent-toggle:hover{ transform:translateY(-3px); border-color:var(--molten,#2FB8FF); box-shadow:0 10px 34px rgba(47,184,255,.32); }
-  #sl-agent-toggle:active{ transform:scale(.95); }
+  #sl-agent-toggle:hover{ transform:translateY(-3px) scale(1.04); box-shadow:0 0 0 1px rgba(47,184,255,.55), 0 14px 36px rgba(47,184,255,.5); animation-play-state:paused; }
+  #sl-agent-toggle:active{ transform:scale(.93); }
   #sl-agent-toggle.sl-hide{ display:none; }
-  .sl-agent-dot-wrap{ position:relative; width:14px; height:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  @keyframes slBreathe{
+    0%,100%{ box-shadow:0 0 0 1px rgba(47,184,255,.35), 0 10px 28px rgba(47,184,255,.35); }
+    50%{ box-shadow:0 0 0 1px rgba(47,184,255,.55), 0 14px 38px rgba(47,184,255,.55); }
+  }
+  #sl-agent-toggle svg{ stroke:#020509; }
+  .sl-agent-dot-wrap{
+    position:absolute; top:1px; right:1px; width:15px; height:15px;
+    display:flex; align-items:center; justify-content:center;
+  }
   .sl-agent-dot{
-    width:7px; height:7px; border-radius:50%;
-    background:var(--signal,#3FE0D0); box-shadow:0 0 10px var(--signal,#3FE0D0);
+    width:10px; height:10px; border-radius:50%;
+    background:var(--signal,#3FE0D0); border:2.5px solid var(--void,#040810);
+    box-shadow:0 0 8px var(--signal,#3FE0D0);
     animation:slDotPulse 1.8s ease-in-out infinite;
   }
-  .sl-agent-ring{
-    position:absolute; inset:0; border-radius:50%;
-    border:1.5px solid var(--signal,#3FE0D0);
-    animation:slRingPulse 2.2s cubic-bezier(.4,0,.2,1) infinite;
+  @keyframes slDotPulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+  /* teaser chip that floats above the launcher on first load */
+  #sl-agent-teaser{
+    position:fixed; right:24px; bottom:92px; z-index:9997;
+    display:flex; align-items:center; gap:10px;
+    padding:11px 16px; max-width:230px;
+    border-radius:14px;
+    background:var(--card, rgba(13,20,33,.85)); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border:1px solid var(--card-border, rgba(111,178,255,.16));
+    color:var(--paper,#EAF2FF); font-size:12.5px; font-family:'JetBrains Mono',monospace; line-height:1.4;
+    cursor:pointer;
+    box-shadow:0 16px 34px -14px rgba(0,0,0,.55);
+    opacity:0; transform:translateY(10px);
+    animation:slTeaserIn .6s cubic-bezier(.22,1,.36,1) 1s forwards;
+    transition:opacity .25s, transform .25s;
   }
-  @keyframes slDotPulse{0%,100%{opacity:1;}50%{opacity:.35;}}
-  @keyframes slRingPulse{
-    0%{ transform:scale(1); opacity:.8; }
-    100%{ transform:scale(2.6); opacity:0; }
-  }
-  #sl-agent-toggle-label{ font-family:'JetBrains Mono',monospace; letter-spacing:.01em; white-space:nowrap; }
+  #sl-agent-teaser.sl-hide{ opacity:0 !important; transform:translateY(10px) !important; pointer-events:none; }
+  @keyframes slTeaserIn{ to{ opacity:1; transform:translateY(0); } }
+  @media(max-width:480px){ #sl-agent-teaser{ display:none; } }
 
   #sl-agent-panel{
     position:fixed; right:24px; bottom:24px; z-index:9998;
@@ -176,9 +195,15 @@
   toggle.id = "sl-agent-toggle";
   toggle.setAttribute("aria-label", "Open chat with the Stitch Lab agent");
   toggle.innerHTML = `
-    <span class="sl-agent-dot-wrap"><span class="sl-agent-ring"></span><span class="sl-agent-dot"></span></span>
-    <span id="sl-agent-toggle-label">&gt; talk to the system</span>
+    <span class="sl-agent-dot-wrap"><span class="sl-agent-dot"></span></span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.32-3.73-.9L3 21l1.9-5.77A8.5 8.5 0 1 1 21 11.5z"/>
+    </svg>
   `;
+
+  const teaser = document.createElement("div");
+  teaser.id = "sl-agent-teaser";
+  teaser.textContent = "Ask about pricing, timelines, or what I actually build →";
 
   const panel = document.createElement("div");
   panel.id = "sl-agent-panel";
@@ -200,6 +225,7 @@
   `;
 
   document.body.appendChild(toggle);
+  document.body.appendChild(teaser);
   document.body.appendChild(panel);
 
   const messagesEl = panel.querySelector("#sl-agent-messages");
@@ -259,6 +285,7 @@
     isOpen = true;
     panel.classList.add("sl-open");
     toggle.classList.add("sl-hide");
+    teaser.classList.add("sl-hide");
     inputEl.focus();
   }
   function closePanel() {
@@ -267,10 +294,16 @@
     toggle.classList.remove("sl-hide");
   }
   toggle.addEventListener("click", openPanel);
+  teaser.addEventListener("click", openPanel);
   closeBtn.addEventListener("click", closePanel);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isOpen) closePanel();
   });
+
+  /* dismiss the teaser chip on its own after a while so it doesn't linger forever */
+  setTimeout(() => {
+    if (!isOpen) teaser.classList.add("sl-hide");
+  }, 9000);
 
   /* ---------- conversation bootstrap ---------- */
   const visitorId = getVisitorId();
