@@ -68,7 +68,7 @@
   /* ===== Modern circular launcher (replaces old terminal pill) ===== */
   #sl-agent-toggle{
     position:fixed; right:24px; bottom:24px; z-index:9997;
-    width:60px; height:60px; border-radius:50%;
+    width:72px; height:72px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
     background:linear-gradient(140deg, var(--neon,#2FB8FF), var(--neon-2,#6E5EFF));
     border:none; cursor:pointer;
@@ -213,7 +213,7 @@
   toggle.setAttribute("aria-label", "Open chat with the Stitch Lab agent");
   toggle.innerHTML = `
     <span class="sl-agent-dot-wrap"><span class="sl-agent-dot"></span></span>
-    <span id="sl-agent-robot" style="width:52px;height:52px;pointer-events:none;display:block;"></span>
+    <span id="sl-agent-robot" style="width:72px;height:72px;pointer-events:none;display:block;"></span>
   `;
 
   const teaser = document.createElement("div");
