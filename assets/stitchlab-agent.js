@@ -196,9 +196,14 @@
   toggle.setAttribute("aria-label", "Open chat with the Stitch Lab agent");
   toggle.innerHTML = `
     <span class="sl-agent-dot-wrap"><span class="sl-agent-dot"></span></span>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.35 0-2.62-.32-3.73-.9L3 21l1.9-5.77A8.5 8.5 0 1 1 21 11.5z"/>
-    </svg>
+    <dotlottie-player
+      src="assets/ai-robot.lottie"
+      background="transparent"
+      speed="1"
+      style="width:46px;height:46px;pointer-events:none;"
+      loop
+      autoplay>
+    </dotlottie-player>
   `;
 
   const teaser = document.createElement("div");
