@@ -197,10 +197,10 @@
   toggle.innerHTML = `
     <span class="sl-agent-dot-wrap"><span class="sl-agent-dot"></span></span>
     <dotlottie-player
-      src="assets/ai-robot.lottie"
+      src="assets/ai-robot.json"
       background="transparent"
       speed="1"
-      style="width:46px;height:46px;pointer-events:none;"
+      style="width:52px;height:52px;pointer-events:none;"
       loop
       autoplay>
     </dotlottie-player>
