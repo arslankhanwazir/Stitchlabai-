@@ -438,7 +438,7 @@
         <p class="note">Please don't send confidential documents here. We agree secure sharing on the call.</p>
       </form>
       <div class="btn-row">
-        <button class="btn" onclick="openCal(event)">Request my free sample</button>
+        <a class="btn" href="#sampleForm">Request my free sample</a>
         <a class="btn alt" href="mailto:arslankhanwazir@gmail.com?subject=Free%20sample">Email me your documents</a>
       </div>
       <div class="built">
@@ -893,7 +893,6 @@
         if(res.ok && res.data && res.data.success === true){
           track('lead_submit');
           status.textContent = "Thanks — I'll reply within 24–48 hours.";
-          openCal();
         } else {
           mailFallback('Something went wrong sending that.');
         }
