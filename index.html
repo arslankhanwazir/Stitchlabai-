@@ -785,7 +785,7 @@
     var status = document.getElementById('sampleStatus');
     var started = false;
     var MAIL = 'mailto:arslankhanwazir@gmail.com?subject=Free%20sample';
-    const WEB3FORMS_KEY = "[[NEEDS_FROM_ARSLAN: Web3Forms access key]]";
+    const WEB3FORMS_KEY = "eff91843-cd5a-483b-8914-91ec196fdc7e";
 
     function setErr(id, input, msg){
       var el = document.getElementById(id);
@@ -854,7 +854,7 @@
       }).then(function(res){
         if(res.ok && res.data && res.data.success === true){
           track('lead_submit');
-          status.textContent = "Thanks — I'll reply within [[NEEDS_FROM_ARSLAN: response-time promise]].";
+          status.textContent = "Thanks — I'll reply within 24–48 hours.";
           openCal();
         } else {
           mailFallback('Something went wrong sending that.');
