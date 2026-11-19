@@ -231,6 +231,12 @@
 
   footer{padding:40px 0 48px; text-align:center; font-size:13px; color:var(--mut);}
 
+  #sampleForm{margin-top:28px; position:relative;}
+  #sampleForm .inset{display:block; width:100%; margin:0 0 6px; padding:16px 18px; border:none; font-family:inherit; font-size:16px; color:var(--tx); outline:none;}
+  #sampleForm textarea.inset{min-height:110px; resize:vertical;}
+  #sampleForm .field-err{margin:0 0 12px; font-size:13px; color:var(--tx);}
+  #sampleForm .hp{position:absolute; left:-9999px; width:1px; height:1px;}
+
   @media (prefers-reduced-motion: reduce){ .caret, .live i, .status.on::before{animation:none;} .src{transition:none;} }
 </style>
 <!-- Microsoft Clarity. Replace the project ID, then uncomment to enable. Loads after idle.
@@ -367,6 +373,32 @@
           <p>Ask it ten real questions from your team. You decide if the full build is worth it.</p>
         </div>
       </div>
+      <form id="sampleForm" novalidate>
+        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="label" for="sampleName">Name</label>
+        <input class="inset" id="sampleName" name="name" type="text" autocomplete="name">
+        <p class="field-err" id="errName"></p>
+        <label class="label" for="sampleEmail">Work email</label>
+        <input class="inset" id="sampleEmail" name="email" type="email" autocomplete="email">
+        <p class="field-err" id="errEmail"></p>
+        <label class="label" for="sampleSite">Company website</label>
+        <input class="inset" id="sampleSite" name="company_website" type="text" inputmode="url" autocomplete="url" placeholder="https://">
+        <p class="field-err" id="errSite"></p>
+        <label class="label" for="sampleDocs">Which documents does your team search most?</label>
+        <textarea class="inset" id="sampleDocs" name="documents"></textarea>
+        <p class="field-err" id="errDocs"></p>
+        <label class="label" for="sampleSize">Team size</label>
+        <select class="inset" id="sampleSize" name="team_size">
+          <option value="">Select</option>
+          <option>1–10</option>
+          <option>11–50</option>
+          <option>50+</option>
+        </select>
+        <p class="field-err" id="errSize"></p>
+        <button class="btn" type="submit">Request my free sample</button>
+        <p class="note" id="sampleStatus" aria-live="polite"></p>
+        <p class="note">Please don't send confidential documents here. We agree secure sharing on the call.</p>
+      </form>
       <div class="btn-row">
         <button class="btn" onclick="openCal(event)">Request my free sample</button>
         <a class="btn alt" href="mailto:arslankhanwazir@gmail.com?subject=Free%20sample">Email me your documents</a>
@@ -670,6 +702,92 @@
     menuBtn.addEventListener('click', function(){ setMenu(!navLinks.classList.contains('open')); });
     navLinks.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+  })();
+
+  (function(){
+    var form = document.getElementById('sampleForm');
+    if(!form) return;
+    var status = document.getElementById('sampleStatus');
+    var started = false;
+    var MAIL = 'mailto:arslankhanwazir@gmail.com?subject=Free%20sample';
+    const WEB3FORMS_KEY = "[[NEEDS_FROM_ARSLAN: Web3Forms access key]]";
+
+    function setErr(id, input, msg){
+      var el = document.getElementById(id);
+      el.textContent = msg || '';
+      if(input) input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    }
+    function mailFallback(prefix){
+      status.innerHTML = prefix + ' <a href="' + MAIL + '">Email me instead</a> so the request is not lost.';
+    }
+    function keyReady(){
+      return WEB3FORMS_KEY && WEB3FORMS_KEY.indexOf('NEEDS_FROM_ARSLAN') === -1 && WEB3FORMS_KEY.indexOf('[[') === -1;
+    }
+    form.addEventListener('focusin', function(e){
+      if(started || !e.target || e.target.name === 'botcheck') return;
+      started = true;
+      track('lead_form_start');
+    });
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('sampleName');
+      var email = document.getElementById('sampleEmail');
+      var site = document.getElementById('sampleSite');
+      var docs = document.getElementById('sampleDocs');
+      var size = document.getElementById('sampleSize');
+      var ok = true;
+      setErr('errName', name, name.value.trim() ? '' : 'Please enter your name.');
+      setErr('errEmail', email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()) ? '' : 'Please enter a work email.');
+      setErr('errSite', site, /\./.test(site.value.trim()) && site.value.trim().indexOf(' ') === -1 ? '' : 'Please enter a company website.');
+      setErr('errDocs', docs, docs.value.trim() ? '' : 'Please say which documents your team searches most.');
+      setErr('errSize', size, size.value ? '' : 'Please choose a team size.');
+      [name, email, site, docs, size].forEach(function(input){ if(input.getAttribute('aria-invalid') === 'true') ok = false; });
+      if(!ok){
+        status.textContent = 'Please fix the highlighted fields.';
+        return;
+      }
+      if(form.querySelector('[name="botcheck"]').checked){
+        mailFallback('That could not be sent.');
+        return;
+      }
+      if(!keyReady()){
+        mailFallback('The sample form is not connected yet.');
+        return;
+      }
+      var payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: 'New StitchLab AI sample request',
+        from_name: 'StitchLab AI',
+        name: name.value.trim(),
+        email: email.value.trim(),
+        company_website: site.value.trim(),
+        documents: docs.value.trim(),
+        team_size: size.value,
+        page: location.href
+      };
+      var qs = new URLSearchParams(location.search);
+      qs.forEach(function(value, key){
+        if(key.toLowerCase().indexOf('utm_') === 0) payload[key] = value;
+      });
+      status.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(response){
+        return response.json().then(function(data){ return { ok: response.ok, data: data }; }).catch(function(){ return { ok: false, data: null }; });
+      }).then(function(res){
+        if(res.ok && res.data && res.data.success === true){
+          track('lead_submit');
+          status.textContent = "Thanks — I'll reply within [[NEEDS_FROM_ARSLAN: response-time promise]].";
+          openCal();
+        } else {
+          mailFallback('Something went wrong sending that.');
+        }
+      }).catch(function(){
+        mailFallback('Something went wrong sending that.');
+      });
+    });
   })();
 
   document.getElementById('emailBtn').addEventListener('click', function(){
