@@ -110,6 +110,7 @@
   .card{padding:26px;}
   .pic{padding:12px; margin-bottom:20px;}
   .pic img{width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:12px;}
+  .pic picture{display:block;}
 
   .grid{display:grid; gap:26px;}
   .g2{grid-template-columns:repeat(2,1fr);}
@@ -194,6 +195,7 @@
 
   .ba{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; margin-top:28px; box-shadow:inset 6px 6px 12px var(--sh1), inset -6px -6px 12px var(--sh2); user-select:none;}
   .ba img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .ba picture{display:contents;}
   .ba .after{clip-path:inset(0 0 0 50%);}
   .ba .div{position:absolute; top:0; bottom:0; left:50%; width:2px; background:#fff; transform:translateX(-1px);}
   .ba .knob{position:absolute; top:50%; left:50%; width:44px; height:44px; border-radius:50%; background:var(--acc); transform:translate(-50%,-50%); cursor:ew-resize; box-shadow:4px 4px 10px var(--sh1), -4px -4px 10px var(--sh2);}
@@ -389,7 +391,7 @@
     <div class="grid g3" style="margin-top:44px;">
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/kppsc-app.png" alt="KPPSC Prep Pro app screen" width="991" height="997" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/kppsc-app-400.avif 400w, assets/opt/kppsc-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/kppsc-app-400.webp 400w, assets/opt/kppsc-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/kppsc-app.png" alt="KPPSC Prep Pro app screen" width="991" height="997" loading="lazy" decoding="async"></picture></div>
         <span class="label">LIVE PRODUCT</span>
         <h3>KPPSC Prep Pro</h3>
         <p>An exam-prep app for Pakistan's public-sector exams, with an AI tutor and a question bank of 2,231 questions.</p>
@@ -398,7 +400,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/pipeline-autopilot.png" alt="Pipeline Autopilot workflow" width="1336" height="708" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/pipeline-autopilot-400.avif 400w, assets/opt/pipeline-autopilot-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/pipeline-autopilot-400.webp 400w, assets/opt/pipeline-autopilot-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/pipeline-autopilot.png" alt="Pipeline Autopilot workflow" width="1336" height="708" loading="lazy" decoding="async"></picture></div>
         <span class="label">PRODUCTION SYSTEM</span>
         <h3>Pipeline Autopilot</h3>
         <p>Lead scoring and routing on self-hosted n8n in queue mode with Redis and Python workers. The engine behind Nodespark.ai.</p>
@@ -406,7 +408,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/apex-outreach.png" alt="Apex Outreach Engine dashboard" width="1408" height="768" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/apex-outreach-400.avif 400w, assets/opt/apex-outreach-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/apex-outreach-400.webp 400w, assets/opt/apex-outreach-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/apex-outreach.png" alt="Apex Outreach Engine dashboard" width="1408" height="768" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>Apex Outreach Engine</h3>
         <p>Finds recently closed local businesses, analyses public reviews, and sends a teaser report to a nearby competitor on a weekly schedule.</p>
@@ -414,7 +416,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/medibook.png" alt="MediBook appointment platform" width="1377" height="736" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/medibook-400.avif 400w, assets/opt/medibook-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/medibook-400.webp 400w, assets/opt/medibook-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/medibook.png" alt="MediBook appointment platform" width="1377" height="736" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>MediBook</h3>
         <p>Appointment management for clinics: patient registration, booking, admin approval, and automated reminders.</p>
@@ -422,7 +424,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" width="1386" height="753" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/crm-lead-capture-400.avif 400w, assets/opt/crm-lead-capture-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/crm-lead-capture-400.webp 400w, assets/opt/crm-lead-capture-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" width="1386" height="753" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>CRM Lead-Capture &amp; Enrichment</h3>
         <p>An AI agent reads inbound emails, extracts contact details and requirements, validates them, and writes clean records to HubSpot.</p>
@@ -430,7 +432,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/executive-outreach.png" alt="Executive outreach engine dashboard" width="1369" height="735" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/executive-outreach-400.avif 400w, assets/opt/executive-outreach-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/executive-outreach-400.webp 400w, assets/opt/executive-outreach-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/executive-outreach.png" alt="Executive outreach engine dashboard" width="1369" height="735" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>Executive Outreach Engine</h3>
         <p>Aggregates job listings across platforms, matches each post against real experience with an AI agent, and sends personalised outreach.</p>
@@ -438,7 +440,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/contact-to-booking.png" alt="Contact-to-booking workflow" width="1357" height="715" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/contact-to-booking-400.avif 400w, assets/opt/contact-to-booking-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/contact-to-booking-400.webp 400w, assets/opt/contact-to-booking-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/contact-to-booking.png" alt="Contact-to-booking workflow" width="1357" height="715" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>Contact-to-Booking Automation</h3>
         <p>A form triggers an AI agent that reads company size and urgency, then sends qualified leads a booking link and routes the rest to nurture.</p>
@@ -446,7 +448,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/n8n-onboarding.png" alt="Agency onboarding engine workflow" width="1968" height="1200" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/n8n-onboarding-400.avif 400w, assets/opt/n8n-onboarding-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/n8n-onboarding-400.webp 400w, assets/opt/n8n-onboarding-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/n8n-onboarding.png" alt="Agency onboarding engine workflow" width="1968" height="1200" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>Autopilot Onboarding Engine</h3>
         <p>A closed-won deal in HubSpot creates the ClickUp space, injects tasks, and drafts a kickoff brief with an LLM.</p>
@@ -454,7 +456,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="assets/whatsapp-autopilot.png" alt="WhatsApp content autopilot workflow" width="1439" height="648" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/whatsapp-autopilot-400.avif 400w, assets/opt/whatsapp-autopilot-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/whatsapp-autopilot-400.webp 400w, assets/opt/whatsapp-autopilot-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/whatsapp-autopilot.png" alt="WhatsApp content autopilot workflow" width="1439" height="648" loading="lazy" decoding="async"></picture></div>
         <span class="label">SYSTEM</span>
         <h3>WhatsApp Content Autopilot</h3>
         <p>A voice note or text in WhatsApp becomes a drafted post with an image, sent back for one-tap approval, then published.</p>
@@ -462,7 +464,7 @@
       </article>
 
       <article class="raised card">
-        <div class="inset pic"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" width="1435" height="1928" loading="lazy"></div>
+        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/touchtrace-app-400.avif 400w, assets/opt/touchtrace-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/touchtrace-app-400.webp 400w, assets/opt/touchtrace-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" width="1435" height="1928" loading="lazy" decoding="async"></picture></div>
         <span class="label">LIVE PRODUCT · CLIENT</span>
         <h3>TouchTrace</h3>
         <p>A documentation platform for a massage and bodywork therapy client, with voice capture, AI structuring, and scroll-driven design.</p>
@@ -477,14 +479,14 @@
       <h3>CarBG Studio Pro</h3>
       <p style="max-width:700px;">A rendering pipeline that places car photos on a studio floor with matched reflections and contact shadows. Drag the slider to compare the raw photo and the output.</p>
       <div class="ba" id="ba">
-        <img src="assets/bugatti-studio.png" alt="Original studio reference of the car" width="1456" height="819">
-        <img src="assets/bugatti-street.png" alt="CarBG Studio Pro output" class="after" id="baAfter" width="1456" height="819">
+        <picture><source type="image/avif" srcset="assets/opt/bugatti-studio-800.avif 800w, assets/opt/bugatti-studio-1456.avif 1456w" sizes="(max-width: 1200px) 100vw, 1112px"><source type="image/webp" srcset="assets/opt/bugatti-studio-800.webp 800w, assets/opt/bugatti-studio-1456.webp 1456w" sizes="(max-width: 1200px) 100vw, 1112px"><img src="assets/bugatti-studio.png" alt="Original studio reference of the car" width="1456" height="819" loading="lazy" decoding="async"></picture>
+        <picture><source type="image/avif" srcset="assets/opt/bugatti-street-800.avif 800w, assets/opt/bugatti-street-1456.avif 1456w" sizes="(max-width: 1200px) 100vw, 1112px"><source type="image/webp" srcset="assets/opt/bugatti-street-800.webp 800w, assets/opt/bugatti-street-1456.webp 1456w" sizes="(max-width: 1200px) 100vw, 1112px"><img src="assets/bugatti-street.png" alt="CarBG Studio Pro output" class="after" id="baAfter" width="1456" height="819" loading="lazy" decoding="async"></picture>
         <div class="div" id="baDiv"></div>
         <div class="knob" id="baKnob" role="slider" aria-label="Compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
         <div class="lbl l">RAW</div>
         <div class="lbl r">OUTPUT</div>
       </div>
-      <video class="demo" controls preload="none" playsinline poster="assets/bugatti-studio.png">
+      <video class="demo" controls preload="none" playsinline poster="assets/opt/bugatti-studio-800.webp">
         <source src="assets/carbg-demo.mp4" type="video/mp4">
       </video>
       <div style="margin-top:18px;"><span class="tag">Computer vision</span><span class="tag">Python</span><span class="tag">Auto-shadowing</span></div>
@@ -658,6 +660,12 @@
   document.getElementById('phoneBtn').addEventListener('click', function(){ track('contact_click', 'phone'); });
 
   (function(){
+    var demoVid = document.querySelector('video.demo');
+    if(demoVid){
+      var posterProbe = new Image();
+      posterProbe.onerror = function(){ demoVid.setAttribute('poster', 'assets/bugatti-studio.png'); };
+      posterProbe.src = demoVid.getAttribute('poster');
+    }
     var box = document.getElementById('ba'), after = document.getElementById('baAfter'),
         div = document.getElementById('baDiv'), knob = document.getElementById('baKnob');
     var drag = false;
