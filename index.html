@@ -242,6 +242,9 @@
   dialog.proj::backdrop{background:rgba(34,44,62,.45);}
   .proj-frame{padding:22px; max-height:calc(100vh - 32px); overflow:auto;}
   .proj-shot{display:block; width:100%; max-height:70vh; object-fit:contain; border-radius:12px;}
+  details.card summary{cursor:pointer;}
+  details.card summary h3{display:inline; margin:0;}
+  details.card p{margin-top:12px;}
 
   @media (prefers-reduced-motion: reduce){ .caret, .live i, .status.on::before{animation:none;} .src{transition:none;} }
 </style>
@@ -583,6 +586,51 @@
       </div>
     </div>
     <p style="margin-top:22px; font-size:13.5px; max-width:760px;">Prices are my proposed rates for this service. Final scope, document limits, hosting, and support period are confirmed in writing before any payment.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>Questions <span class="acc">before a build.</span></h2>
+    <div class="grid" style="margin-top:44px;">
+      <details class="raised card">
+        <summary><h3>What is a private AI knowledge assistant?</h3></summary>
+        <p>A chat assistant that answers your team's questions only from your own approved documents and shows the source passage for each answer.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>What do I need to provide?</h3></summary>
+        <p>The approved documents (PDF, Word or text). We agree formats and limits on a call.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>Can we test it before committing?</h3></summary>
+        <p>Yes. Send about 5 of your documents and I'll build a small working sample so you can ask it real questions before the full build.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>How do I know the answers are right?</h3></summary>
+        <p>Every answer cites the passage it came from so your team can verify it. If nothing relevant is found, it says so.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>Where do our documents go?</h3></summary>
+        <p>Documents are used only to answer your team's questions. I name the AI provider and the storage location in the written scope before any payment.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>How long does a build take?</h3></summary>
+        <p>It depends on the number and type of documents. I give a fixed delivery date in the written proposal before payment.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>What does the $1,500 build include?</h3></summary>
+        <p>The assistant on your agreed documents, cited answers, a chat interface, and handover documentation. Integrations, SSO, custom permissions and large document migrations are scoped separately.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>Are hosting and API costs included?</h3></summary>
+        <p>Hosting and model/API costs for ongoing maintenance are quoted separately, and the deployment environment is agreed before the build.</p>
+      </details>
+      <details class="raised card">
+        <summary><h3>Who owns the code?</h3></summary>
+        <p>You receive the code and a short runbook.</p>
+      </details>
+    </div>
   </div>
 </section>
 
