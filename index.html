@@ -571,10 +571,11 @@
   <div class="wrap">© 2026 StitchLab AI — Arslan Khan · Peshawar, PK · Remote worldwide</div>
 </footer>
 
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <script>
   var CAL_URL = 'https://calendly.com/arslankhanwazir/new-meeting?background_color=e8edf4&text_color=222c3e&primary_color=2f6fe0';
+  var calendlyLoading = null;
+  var calendlyWatching = false;
+  var bookingCompleted = false;
 
   function track(name, label){
     if(typeof gtag !== 'function') return;
@@ -582,11 +583,50 @@
     else gtag('event', name);
   }
 
+  function watchCalendly(){
+    if(calendlyWatching) return;
+    calendlyWatching = true;
+    window.addEventListener('message', function(event){
+      if(event.origin !== 'https://calendly.com') return;
+      var data = event.data;
+      if(typeof data === 'string'){
+        try { data = JSON.parse(data); } catch(err){ return; }
+      }
+      if(!data || data.event !== 'calendly.event_scheduled') return;
+      if(bookingCompleted) return;
+      bookingCompleted = true;
+      track('booking_completed', 'calendly');
+    });
+  }
+
+  function loadCalendly(){
+    if(window.Calendly && Calendly.initPopupWidget) return Promise.resolve();
+    if(calendlyLoading) return calendlyLoading;
+    calendlyLoading = new Promise(function(resolve, reject){
+      var css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://assets.calendly.com/assets/external/widget.css';
+      document.head.appendChild(css);
+      var script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = function(){ resolve(); };
+      script.onerror = function(){ calendlyLoading = null; reject(); };
+      document.body.appendChild(script);
+    });
+    return calendlyLoading;
+  }
+
   function openCal(e){
     if(e && e.preventDefault) e.preventDefault();
-    if(window.Calendly && Calendly.initPopupWidget){ Calendly.initPopupWidget({ url: CAL_URL }); }
-    else { window.open(CAL_URL, '_blank', 'noopener'); }
     track('booking_click', 'calendly');
+    loadCalendly().then(function(){
+      watchCalendly();
+      if(window.Calendly && Calendly.initPopupWidget) Calendly.initPopupWidget({ url: CAL_URL });
+      else window.open(CAL_URL, '_blank', 'noopener');
+    }).catch(function(){
+      window.open(CAL_URL, '_blank', 'noopener');
+    });
   }
 
   document.getElementById('emailBtn').addEventListener('click', function(){
