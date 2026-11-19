@@ -259,7 +259,7 @@
 
     <div class="stage">
       <span class="float a"><span style="color:var(--ok);">●</span> Answer with sources</span>
-      <div class="raised win" aria-live="polite">
+      <div class="raised win">
         <div class="win-top">
           <div class="dots"><span></span><span></span><span></span></div>
           <span class="live"><i></i>Assistant ready</span>
@@ -744,15 +744,41 @@
 
     var qEl = document.getElementById('qText'), st = document.getElementById('status'),
         srcBox = document.getElementById('srcs'), ans = document.getElementById('answer');
-    var wait = function(ms){ return new Promise(function(r){ setTimeout(r, ms); }); };
+    var heroOnScreen = true;
+    var heroBox = document.querySelector('.stage .win');
+    if(heroBox && 'IntersectionObserver' in window){
+      var heroIO = new IntersectionObserver(function(entries){
+        heroOnScreen = entries[0].isIntersecting;
+      }, { threshold: 0 });
+      heroIO.observe(heroBox);
+    }
+    function heroCanRun(){
+      return heroOnScreen && document.visibilityState !== 'hidden';
+    }
+    function wait(ms){
+      return new Promise(function(resolve){
+        var left = ms, last = Date.now();
+        var timer = setInterval(function(){
+          var now = Date.now();
+          if(!heroCanRun()){ last = now; return; }
+          left -= now - last;
+          last = now;
+          if(left <= 0){ clearInterval(timer); resolve(); }
+        }, 20);
+      });
+    }
 
     function typeInto(el, text, speed){
       return new Promise(function(resolve){
-        el.textContent = ''; var i = 0;
-        var t = setInterval(function(){
+        el.textContent = '';
+        var i = 0;
+        function tick(){
+          if(!heroCanRun()){ setTimeout(tick, 120); return; }
+          if(i >= text.length){ resolve(); return; }
           el.textContent += text.charAt(i++);
-          if(i >= text.length){ clearInterval(t); resolve(); }
-        }, speed);
+          setTimeout(tick, speed);
+        }
+        tick();
       });
     }
     function renderSources(list){
