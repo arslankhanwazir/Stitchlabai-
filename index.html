@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DMD9RYKV00"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-DMD9RYKV00');
+</script>
+
+<title>Private AI Knowledge Assistant for Agencies | Stitch Lab</title>
+<meta name="description" content="Private AI assistants that answer from your company's own documents, with source citations. Fixed-price builds by Arslan Khan, Peshawar, working remotely worldwide.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://stitchlabai.space/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stitchlabai.space/">
+<meta property="og:title" content="Private AI Knowledge Assistant for Agencies | Stitch Lab">
+<meta property="og:description" content="Ask your documents. Get answers you can trust, with sources.">
+<meta property="og:image" content="https://stitchlabai.space/assets/kppsc-app.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Stitch Lab",
+  "url": "https://stitchlabai.space/",
+  "description": "Private AI knowledge assistants built on a company's own documents, with source citations.",
+  "founder": { "@type": "Person", "name": "Arslan Khan", "url": "https://linkedin.com/in/arslankhanwazir" },
+  "areaServed": "Worldwide",
+  "address": { "@type": "PostalAddress", "addressLocality": "Peshawar", "addressRegion": "Khyber Pakhtunkhwa", "addressCountry": "PK" },
+  "priceRange": "$1,500 - $2,500"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#e8edf4;
+    --tx:#222c3e;
+    --mut:#66728a;
+    --acc:#2f6fe0;
+    --acc2:#7b5cf0;
+    --ok:#22b573;
+    --sh1:#c5ccd8;
+    --sh2:#ffffff;
+  }
+  *{margin:0; padding:0; box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--tx); font-family:'Poppins',system-ui,sans-serif; line-height:1.6; overflow-x:hidden;}
+  a{color:inherit; text-decoration:none;}
+  img, video{display:block; max-width:100%;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--acc); outline-offset:3px;}
+
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+  section{padding:96px 0;}
+  @media(max-width:600px){section{padding:64px 0;}}
+
+  h1,h2,h3{font-weight:700; line-height:1.12; letter-spacing:-.025em;}
+  h1{font-size:clamp(36px,5vw,62px); max-width:600px;}
+  h2{font-size:clamp(28px,3.6vw,40px); max-width:760px; margin-bottom:14px;}
+  h3{font-size:19px; margin-bottom:8px;}
+  p{color:var(--mut);}
+  .acc{color:var(--acc);}
+  .grad{background:linear-gradient(90deg,var(--acc),var(--acc2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--acc); margin-bottom:14px;}
+  .lead{font-size:17px; max-width:540px; margin-top:18px;}
+
+  .raised{background:var(--bg); border-radius:24px; box-shadow:9px 9px 18px var(--sh1), -9px -9px 18px var(--sh2);}
+  .inset{background:var(--bg); border-radius:18px; box-shadow:inset 6px 6px 12px var(--sh1), inset -6px -6px 12px var(--sh2);}
+  .card{padding:26px;}
+  .pic{padding:12px; margin-bottom:20px;}
+  .pic img{width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:12px;}
+
+  .grid{display:grid; gap:26px;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:960px){.g3,.g4{grid-template-columns:1fr 1fr;}}
+  @media(max-width:640px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+
+  .btn{display:inline-block; padding:15px 30px; border-radius:14px; background:linear-gradient(100deg,var(--acc),var(--acc2)); color:#fff; font-family:inherit; font-weight:600; font-size:15px; border:none; cursor:pointer; box-shadow:0 10px 26px rgba(47,111,224,.35); transition:transform .15s;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn.alt{background:var(--bg); color:var(--tx); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2);}
+  .btn-row{display:flex; flex-wrap:wrap; gap:16px; margin-top:34px;}
+
+  .tag{display:inline-block; font-size:12px; padding:5px 12px; border-radius:999px; background:var(--bg); box-shadow:inset 3px 3px 6px var(--sh1), inset -3px -3px 6px var(--sh2); color:var(--mut); margin:0 6px 6px 0;}
+  .label{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--acc); letter-spacing:.08em; margin-bottom:8px; display:block;}
+
+  nav.top{position:sticky; top:0; z-index:50; background:var(--bg); box-shadow:0 6px 14px var(--sh1);}
+  nav.top .wrap{display:flex; align-items:center; justify-content:space-between; height:70px;}
+  .brand{font-weight:700; font-size:18px;}
+  .links{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--mut);}
+  .links a:hover{color:var(--acc);}
+  @media(max-width:760px){.links{display:none;}}
+  .btn-sm{padding:10px 18px; font-size:13px; border-radius:12px;}
+
+  /* HERO */
+  .hero{padding:70px 0 110px; position:relative; overflow:hidden;}
+  .hero-glow{position:absolute; width:620px; height:620px; border-radius:50%; background:radial-gradient(circle, rgba(123,92,240,.28), rgba(47,111,224,.12) 45%, transparent 70%); top:-160px; right:-200px; pointer-events:none;}
+  .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:center;}
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr; gap:56px;} .hero-glow{right:-260px;}}
+
+  .stage{position:relative; padding:18px;}
+  .win{padding:24px;}
+  .win-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; gap:10px;}
+  .dots span{display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--sh1); margin-right:6px;}
+  .live{display:inline-flex; align-items:center; font-size:12px; font-weight:600; color:var(--ok);}
+  .live i{width:9px; height:9px; border-radius:50%; background:var(--ok); margin-right:7px; animation:pulse 2s infinite;}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,181,115,.55);} 70%{box-shadow:0 0 0 10px rgba(34,181,115,0);} 100%{box-shadow:0 0 0 0 rgba(34,181,115,0);}}
+
+  .search{display:flex; align-items:center; gap:12px; padding:15px 18px; border-radius:14px; background:var(--bg); box-shadow:inset 5px 5px 10px var(--sh1), inset -5px -5px 10px var(--sh2); font-size:14.5px; color:var(--tx); margin-bottom:18px;}
+  .search .ic{color:var(--acc); font-weight:700;}
+  .answer{padding:18px 20px; border-radius:16px; background:var(--bg); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2); font-size:15px; line-height:1.65; color:var(--tx);}
+  .answer .hl{background:linear-gradient(transparent 55%, rgba(47,111,224,.22) 55%); padding:0 2px;}
+  .caret{display:inline-block; width:8px; height:17px; background:var(--acc); margin-left:4px; vertical-align:-3px; animation:blink 1s steps(2) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .src-label{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mut); letter-spacing:.08em; margin:20px 0 10px; display:block;}
+  .src{display:flex; align-items:center; gap:12px; padding:12px 14px; margin-bottom:10px; border-radius:14px; background:var(--bg); box-shadow:4px 4px 8px var(--sh1), -4px -4px 8px var(--sh2); font-size:13.5px; color:var(--tx);}
+  .src i{flex-shrink:0; width:30px; height:30px; border-radius:9px; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; display:flex; align-items:center; justify-content:center; font-style:normal; font-weight:700; font-size:12px;}
+  .src small{display:block; color:var(--mut); font-size:12px;}
+  .float{position:absolute; z-index:2; padding:11px 18px; border-radius:999px; background:var(--bg); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2); font-size:13px; font-weight:600; color:var(--tx);}
+  .float.a{top:0; right:-6px;}
+  .float.b{bottom:6px; left:-10px;}
+  @media(max-width:600px){.float.b{left:6px;} .float.a{right:6px;}}
+
+  /* PROBLEM / HOW */
+  .steps .card .n{font-family:'JetBrains Mono',monospace; color:var(--acc); font-size:13px; margin-bottom:10px;}
+
+  /* SAMPLE OFFER */
+  .sample-box{padding:44px; margin-top:44px;}
+  .sample-box .step-n{width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; margin-bottom:16px;}
+  .built{margin-top:34px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;}
+  .built b{font-size:13px; color:var(--tx); margin-right:6px;}
+
+  .note-list{list-style:none;}
+  .note-list li{padding:9px 0; color:var(--mut); font-size:15px; border-top:1px solid rgba(42,52,70,.08);}
+  .note-list li:first-child{border-top:none;}
+
+  .ba{position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9; margin-top:28px; box-shadow:inset 6px 6px 12px var(--sh1), inset -6px -6px 12px var(--sh2); user-select:none;}
+  .ba img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .ba .after{clip-path:inset(0 0 0 50%);}
+  .ba .div{position:absolute; top:0; bottom:0; left:50%; width:2px; background:#fff; transform:translateX(-1px);}
+  .ba .knob{position:absolute; top:50%; left:50%; width:44px; height:44px; border-radius:50%; background:var(--acc); transform:translate(-50%,-50%); cursor:ew-resize; box-shadow:4px 4px 10px var(--sh1), -4px -4px 10px var(--sh2);}
+  .ba .lbl{position:absolute; top:14px; font-family:'JetBrains Mono',monospace; font-size:11px; background:var(--bg); padding:5px 12px; border-radius:999px; box-shadow:3px 3px 6px var(--sh1), -3px -3px 6px var(--sh2);}
+  .ba .l{left:14px;} .ba .r{right:14px;}
+  video.demo{width:100%; border-radius:18px; margin-top:24px; box-shadow:9px 9px 18px var(--sh1), -9px -9px 18px var(--sh2);}
+
+  .price .amt{font-size:38px; font-weight:700; margin:6px 0 4px;}
+  .price .amt small{font-size:14px; font-weight:500; color:var(--mut);}
+  .price ul{list-style:none; margin:18px 0 26px;}
+  .price li{padding:9px 0; font-size:14.5px; color:var(--mut); border-top:1px solid rgba(42,52,70,.08);}
+  .price li:first-child{border-top:none;}
+  .price .btn{width:100%; text-align:center;}
+  .featured{outline:2px solid var(--acc); outline-offset:-2px;}
+
+  .quote{padding:40px; max-width:820px;}
+  .quote p.q{font-size:20px; color:var(--tx); line-height:1.6; margin-bottom:22px;}
+  .who{display:flex; align-items:center; gap:14px;}
+  .av{width:46px; height:46px; border-radius:50%; background:var(--acc); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;}
+
+  .contact{padding:64px 40px; text-align:center;}
+  .contact .btn-row{justify-content:center;}
+  .contact .links2{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:34px;}
+  .chip{padding:10px 18px; border-radius:999px; font-size:13.5px; background:var(--bg); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2); color:var(--tx);}
+  #copyHint{font-size:12px; color:var(--acc); min-height:18px; margin-top:12px;}
+
+  footer{padding:40px 0 48px; text-align:center; font-size:13px; color:var(--mut);}
+
+  @media (prefers-reduced-motion: reduce){ .caret, .live i{animation:none;} }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="wrap">
+    <a href="#top" class="brand">Stitch Lab</a>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#work">Work</a>
+      <a href="#sample">Free sample</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="btn btn-sm" onclick="openCal(event)">Book a call</button>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Private AI assistant for agencies</p>
+      <h1>Stop digging through documents. <span class="grad">Just ask.</span></h1>
+      <p class="lead">Your SOPs, playbooks, and client guides become a private assistant your team can ask anything. Every answer shows the exact document it came from, so people act with confidence.</p>
+      <div class="btn-row">
+        <button class="btn" onclick="openCal(event)">Book a 20-minute call</button>
+        <a class="btn alt" href="#sample">Get a free sample</a>
+      </div>
+      <div style="margin-top:30px;">
+        <span class="tag">Your documents only</span>
+        <span class="tag">Cited answers</span>
+        <span class="tag">Fixed-price build</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <span class="float a"><span style="color:var(--ok);">●</span> Answer with sources</span>
+      <div class="raised win">
+        <div class="win-top">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="live"><i></i>Assistant ready</span>
+        </div>
+        <div class="search"><span class="ic">⌕</span> What's our brief template for paid social?</div>
+        <div class="answer">
+          Use the <span class="hl">Paid Social Brief v3</span>. It needs the target audience, three KPIs, and account-lead approval before launch<span class="caret"></span>
+        </div>
+        <span class="src-label">SOURCES</span>
+        <div class="src"><i>1</i><div>Paid Social SOP<small>Section 4.2</small></div></div>
+        <div class="src"><i>2</i><div>Client Brief Template<small>Section 2</small></div></div>
+        <div class="src"><i>3</i><div>Approval Policy<small>Page 1</small></div></div>
+      </div>
+      <span class="float b"><span style="color:var(--acc);">⬢</span> Private to your team</span>
+    </div>
+  </div>
+</section>
+
+<section id="problem">
+  <div class="wrap">
+    <p class="eyebrow">The problem</p>
+    <h2>Your answers are buried in documents nobody can find <span class="acc">when they need them.</span></h2>
+    <div class="grid g2" style="margin-top:44px;">
+      <div class="raised card"><h3>Same questions, every week</h3><p>New hires and account managers ask the same questions in Slack, and a senior person answers them again and again.</p></div>
+      <div class="raised card"><h3>Guides exist, but finding the paragraph takes too long</h3><p>The information is written down. It's just hard to search, especially under deadline pressure.</p></div>
+      <div class="raised card"><h3>Guessing creates mistakes</h3><p>When the right answer is slow to find, people guess. Wrong answers reach clients, and the cost is rework and lost trust.</p></div>
+      <div class="raised card"><h3>Answers you can check</h3><p>An assistant that answers only from approved documents, and shows where each answer came from, lets your team act quickly and verify first.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="steps">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>From your documents to a working assistant <span class="acc">in four steps.</span></h2>
+    <div class="grid g4" style="margin-top:44px;">
+      <div class="raised card"><div class="n">01</div><h3>Share approved documents</h3><p>You send the SOPs, playbooks, and guides the assistant should use. We agree file formats and limits on a call.</p></div>
+      <div class="raised card"><div class="n">02</div><h3>We index them</h3><p>Documents are split into passages and indexed for search by meaning, not just keywords.</p></div>
+      <div class="raised card"><div class="n">03</div><h3>Your team asks</h3><p>Employees ask questions through a simple chat interface connected to the assistant.</p></div>
+      <div class="raised card"><div class="n">04</div><h3>Answers with sources</h3><p>Each answer comes with citations to the original passages, so the team can verify it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sample">
+  <div class="wrap">
+    <p class="eyebrow">Start here</p>
+    <h2>See it on <span class="acc">your own documents first.</span></h2>
+    <p class="lead">Not sure yet? Send me a few of your documents. I'll build a small working sample so you can ask it real questions before you spend anything.</p>
+
+    <div class="raised sample-box">
+      <div class="grid g3">
+        <div>
+          <div class="step-n">1</div>
+          <h3>Send 5 documents</h3>
+          <p>Pick a few SOPs, playbooks, or guides that your team searches for most.</p>
+        </div>
+        <div>
+          <div class="step-n">2</div>
+          <h3>I build a sample</h3>
+          <p>A working chat on your files, with cited answers. It's a short sample, not the full build.</p>
+        </div>
+        <div>
+          <div class="step-n">3</div>
+          <h3>You test it</h3>
+          <p>Ask it ten real questions from your team. You decide if the full build is worth it.</p>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn" onclick="openCal(event)">Request my free sample</button>
+        <a class="btn alt" href="mailto:arslankhanwazir@gmail.com?subject=Free%20sample">Email me your documents</a>
+      </div>
+      <div class="built">
+        <b>Built with</b>
+        <span class="tag">n8n</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Cloudflare</span><span class="tag">HubSpot</span><span class="tag">ClickUp</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <p class="eyebrow">Selected work</p>
+    <h2>Systems I've built and shipped, <span class="acc">including live products.</span></h2>
+    <div class="grid g3" style="margin-top:44px;">
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/kppsc-app.png" alt="KPPSC Prep Pro app screen" loading="lazy"></div>
+        <span class="label">LIVE PRODUCT</span>
+        <h3>KPPSC Prep Pro</h3>
+        <p>An exam-prep app for Pakistan's public-sector exams, with an AI tutor and a question bank of 2,231 questions.</p>
+        <div style="margin-top:14px;"><span class="tag">AI tutor</span><span class="tag">RAG</span><span class="tag">Mobile UI</span></div>
+        <a href="https://arslankhanwazir.github.io/kppsc/app.html" target="_blank" rel="noopener" class="acc" style="font-weight:600; font-size:14px;">Open the app →</a>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/pipeline-autopilot.png" alt="Pipeline Autopilot workflow" loading="lazy"></div>
+        <span class="label">PRODUCTION SYSTEM</span>
+        <h3>Pipeline Autopilot</h3>
+        <p>Lead scoring and routing on self-hosted n8n in queue mode with Redis and Python workers. The engine behind Nodespark.ai.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Redis</span><span class="tag">HubSpot</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/apex-outreach.png" alt="Apex Outreach Engine dashboard" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>Apex Outreach Engine</h3>
+        <p>Finds recently closed local businesses, analyses public reviews, and sends a teaser report to a nearby competitor on a weekly schedule.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Groq LLM</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/medibook.png" alt="MediBook appointment platform" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>MediBook</h3>
+        <p>Appointment management for clinics: patient registration, booking, admin approval, and automated reminders.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>CRM Lead-Capture &amp; Enrichment</h3>
+        <p>An AI agent reads inbound emails, extracts contact details and requirements, validates them, and writes clean records to HubSpot.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">HubSpot</span><span class="tag">OpenAI</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/executive-outreach.png" alt="Executive outreach engine dashboard" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>Executive Outreach Engine</h3>
+        <p>Aggregates job listings across platforms, matches each post against real experience with an AI agent, and sends personalised outreach.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Vector DB</span><span class="tag">Docker</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/contact-to-booking.png" alt="Contact-to-booking workflow" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>Contact-to-Booking Automation</h3>
+        <p>A form triggers an AI agent that reads company size and urgency, then sends qualified leads a booking link and routes the rest to nurture.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Cal.com</span><span class="tag">HubSpot</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/n8n-onboarding.png" alt="Agency onboarding engine workflow" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>Autopilot Onboarding Engine</h3>
+        <p>A closed-won deal in HubSpot creates the ClickUp space, injects tasks, and drafts a kickoff brief with an LLM.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">HubSpot</span><span class="tag">ClickUp</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="assets/whatsapp-autopilot.png" alt="WhatsApp content autopilot workflow" loading="lazy"></div>
+        <span class="label">SYSTEM</span>
+        <h3>WhatsApp Content Autopilot</h3>
+        <p>A voice note or text in WhatsApp becomes a drafted post with an image, sent back for one-tap approval, then published.</p>
+        <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">WhatsApp API</span><span class="tag">Facebook API</span></div>
+      </article>
+
+      <article class="raised card">
+        <div class="inset pic"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" loading="lazy"></div>
+        <span class="label">LIVE PRODUCT · CLIENT</span>
+        <h3>TouchTrace</h3>
+        <p>A documentation platform for a massage and bodywork therapy client, with voice capture, AI structuring, and scroll-driven design.</p>
+        <div style="margin-top:14px;"><span class="tag">Next.js</span><span class="tag">GSAP</span><span class="tag">Three.js</span></div>
+        <a href="https://touchtrace.vercel.app/" target="_blank" rel="noopener" class="acc" style="font-weight:600; font-size:14px;">See it live →</a>
+      </article>
+
+    </div>
+
+    <article class="raised card" style="margin-top:26px; padding:36px;">
+      <span class="label">LIVE PRODUCT</span>
+      <h3>CarBG Studio Pro</h3>
+      <p style="max-width:700px;">A rendering pipeline that places car photos on a studio floor with matched reflections and contact shadows. Drag the slider to compare the raw photo and the output.</p>
+      <div class="ba" id="ba">
+        <img src="assets/bugatti-studio.png" alt="Original studio reference of the car">
+        <img src="assets/bugatti-street.png" alt="CarBG Studio Pro output" class="after" id="baAfter">
+        <div class="div" id="baDiv"></div>
+        <div class="knob" id="baKnob" role="slider" aria-label="Compare before and after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+        <div class="lbl l">RAW</div>
+        <div class="lbl r">OUTPUT</div>
+      </div>
+      <video class="demo" controls preload="none" playsinline poster="assets/bugatti-studio.png">
+        <source src="assets/carbg-demo.mp4" type="video/mp4">
+      </video>
+      <div style="margin-top:18px;"><span class="tag">Computer vision</span><span class="tag">Python</span><span class="tag">Auto-shadowing</span></div>
+    </article>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2>Fixed prices. <span class="acc">Scope agreed first.</span></h2>
+    <div class="grid g3" style="margin-top:44px;">
+      <div class="raised card price">
+        <h3>Assistant Build</h3>
+        <p>First three clients</p>
+        <div class="amt">$1,500 <small>fixed</small></div>
+        <ul>
+          <li>Private assistant on your agreed documents</li>
+          <li>Cited answers and chat interface</li>
+          <li>Handover, testing, and documentation</li>
+          <li>Introductory price for early clients</li>
+        </ul>
+        <button class="btn alt" onclick="openCal(event)">Book a call</button>
+      </div>
+      <div class="raised card price featured">
+        <h3>Assistant Build</h3>
+        <p>After the first three clients</p>
+        <div class="amt">$2,500 <small>fixed</small></div>
+        <ul>
+          <li>Same scope as the introductory build</li>
+          <li>Documented limits on documents and users</li>
+          <li>Handover and written documentation</li>
+          <li>Deployment environment agreed before build</li>
+        </ul>
+        <button class="btn" onclick="openCal(event)">Book a call</button>
+      </div>
+      <div class="raised card price">
+        <h3>Maintenance</h3>
+        <p>Optional, after launch</p>
+        <div class="amt">$1,000 <small>/ month</small></div>
+        <ul>
+          <li>Document updates added to the assistant</li>
+          <li>Monitoring and fixes</li>
+          <li>Priority turnaround on changes</li>
+          <li>Hosting and model/API costs quoted separately</li>
+        </ul>
+        <button class="btn alt" onclick="openCal(event)">Discuss maintenance</button>
+      </div>
+    </div>
+    <p style="margin-top:22px; font-size:13.5px; max-width:760px;">Prices are my proposed rates for this service. Final scope, document limits, hosting, and support period are confirmed in writing before any payment.</p>
+  </div>
+</section>
+
+<section id="testimonial">
+  <div class="wrap">
+    <p class="eyebrow">Client feedback</p>
+    <div class="raised quote">
+      <p class="q">"We stopped losing leads in the CRM the week this went live. It just quietly does the job every day."</p>
+      <div class="who"><div class="av">G</div><div><b style="color:var(--tx);">Gregory O.</b><p style="font-size:13px;">Co-founder, Nodespark.ai</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <p class="eyebrow">About</p>
+    <h2>Arslan Khan <span class="acc">builds the systems.</span></h2>
+    <p class="lead">I build the working layer between the tools a business already uses and the outcome it needs: backend services in FastAPI, n8n pipelines, and AI agents that answer from real data and say when they're unsure.</p>
+    <p class="lead">Two of my own products are live: CarBG Studio Pro, a car-photo tool, and KPPSC Prep Pro, an exam-prep app. The rest is client work listed above.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="raised contact">
+      <p class="eyebrow">Get in touch</p>
+      <h2 style="margin:0 auto 14px;">Have a document pile your team keeps searching?</h2>
+      <p class="lead" style="margin:0 auto;">Book a 20-minute call or send a sample of your documents. I'll tell you within two days whether an assistant is the right fit.</p>
+      <div class="btn-row">
+        <button class="btn" onclick="openCal(event)">Book a 20-minute call</button>
+        <a class="btn alt" href="mailto:arslankhanwazir@gmail.com" id="emailBtn">Email</a>
+        <a class="btn alt" href="tel:+923358074323" id="phoneBtn">+92 335 8074323</a>
+      </div>
+      <div id="copyHint"></div>
+      <div class="links2">
+        <a class="chip" href="https://contra.com/arslan_khan_4tkkmb7r" target="_blank" rel="noopener">Contra</a>
+        <a class="chip" href="https://linkedin.com/in/arslankhanwazir" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="https://arslankhanwazir.github.io/kppsc/app.html" target="_blank" rel="noopener">KPPSC Prep Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Stitch Lab — Arslan Khan · Peshawar, PK · Remote worldwide</div>
+</footer>
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  var CAL_URL = 'https://calendly.com/arslankhanwazir/new-meeting?background_color=e8edf4&text_color=222c3e&primary_color=2f6fe0';
+
+  function track(name, label){ if(typeof gtag === 'function') gtag('event', name, { link_text: label }); }
+
+  function openCal(e){
+    if(e && e.preventDefault) e.preventDefault();
+    if(window.Calendly && Calendly.initPopupWidget){ Calendly.initPopupWidget({ url: CAL_URL }); }
+    else { window.open(CAL_URL, '_blank', 'noopener'); }
+    track('booking_click', 'calendly');
+  }
+
+  document.getElementById('emailBtn').addEventListener('click', function(){
+    track('contact_click', 'email');
+    if(navigator.clipboard) navigator.clipboard.writeText('arslankhanwazir@gmail.com').catch(function(){});
+    var h = document.getElementById('copyHint');
+    h.textContent = 'Email copied to clipboard';
+    setTimeout(function(){ h.textContent = ''; }, 2200);
+  });
+  document.getElementById('phoneBtn').addEventListener('click', function(){ track('contact_click', 'phone'); });
+
+  (function(){
+    var box = document.getElementById('ba'), after = document.getElementById('baAfter'),
+        div = document.getElementById('baDiv'), knob = document.getElementById('baKnob');
+    var drag = false;
+    function set(p){
+      p = Math.max(4, Math.min(96, p));
+      after.style.clipPath = 'inset(0 0 0 ' + p + '%)';
+      div.style.left = p + '%'; knob.style.left = p + '%';
+      knob.setAttribute('aria-valuenow', Math.round(p));
+    }
+    function fromX(x){ var r = box.getBoundingClientRect(); set(((x - r.left) / r.width) * 100); }
+    knob.addEventListener('mousedown', function(){ drag = true; });
+    knob.addEventListener('touchstart', function(){ drag = true; }, { passive: true });
+    window.addEventListener('mouseup', function(){ drag = false; });
+    window.addEventListener('touchend', function(){ drag = false; });
+    window.addEventListener('mousemove', function(e){ if(drag) fromX(e.clientX); });
+    window.addEventListener('touchmove', function(e){ if(drag && e.touches[0]) fromX(e.touches[0].clientX); }, { passive: true });
+    box.addEventListener('click', function(e){ fromX(e.clientX); });
+    knob.addEventListener('keydown', function(e){
+      var c = parseFloat(knob.getAttribute('aria-valuenow')) || 50;
+      if(e.key === 'ArrowLeft') set(c - 3);
+      if(e.key === 'ArrowRight') set(c + 3);
+    });
+  })();
+</script>
+</body>
+</html>
