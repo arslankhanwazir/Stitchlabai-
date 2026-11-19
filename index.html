@@ -132,7 +132,14 @@
   .brand{font-weight:700; font-size:18px;}
   .links{display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--mut);}
   .links a:hover{color:var(--acc);}
-  @media(max-width:760px){.links{display:none;}}
+  .menu-btn{display:none; width:44px; height:44px; border:none; border-radius:12px; background:var(--bg); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2); padding:0; cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:5px; flex:none;}
+  .menu-btn span{display:block; width:18px; height:2px; background:var(--tx); border-radius:2px;}
+  @media(max-width:760px){
+    .menu-btn{display:inline-flex; margin-left:auto;}
+    nav.top .wrap{position:relative;}
+    .links{display:none; position:absolute; top:70px; left:0; right:0; flex-direction:column; gap:14px; padding:8px 24px 18px; background:var(--bg); box-shadow:0 6px 14px var(--sh1);}
+    .links.open{display:flex;}
+  }
   .btn-sm{padding:10px 18px; font-size:13px; border-radius:12px;}
 
   /* HERO */
@@ -249,13 +256,14 @@
 <nav class="top">
   <div class="wrap">
     <a href="#top" class="brand">StitchLab AI</a>
-    <div class="links">
+    <div class="links" id="navLinks">
       <a href="#how">How it works</a>
       <a href="#try">Try it</a>
       <a href="#work">Work</a>
       <a href="#pricing">Pricing</a>
       <a href="#contact">Contact</a>
     </div>
+    <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
     <button class="btn btn-sm" onclick="openCal(event)">Book a call</button>
   </div>
 </nav>
@@ -649,6 +657,20 @@
       window.open(CAL_URL, '_blank', 'noopener');
     });
   }
+
+  (function(){
+    var menuBtn = document.getElementById('menuBtn');
+    var navLinks = document.getElementById('navLinks');
+    if(!menuBtn || !navLinks) return;
+    function setMenu(open){
+      navLinks.classList.toggle('open', open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+    }
+    menuBtn.addEventListener('click', function(){ setMenu(!navLinks.classList.contains('open')); });
+    navLinks.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+  })();
 
   document.getElementById('emailBtn').addEventListener('click', function(){
     track('contact_click', 'email');
