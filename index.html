@@ -108,9 +108,9 @@
   .raised{background:var(--bg); border-radius:24px; box-shadow:9px 9px 18px var(--sh1), -9px -9px 18px var(--sh2);}
   .inset{background:var(--bg); border-radius:18px; box-shadow:inset 6px 6px 12px var(--sh1), inset -6px -6px 12px var(--sh2);}
   .card{padding:26px;}
-  .pic{padding:12px; margin-bottom:20px;}
-  .pic img{width:100%; aspect-ratio:16/10; object-fit:cover; object-position:top; border-radius:12px;}
-  .pic picture{display:block;}
+  .pic{padding:12px; margin-bottom:20px; aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; overflow:hidden;}
+  .pic .proj-hit, .pic picture{display:flex; align-items:center; justify-content:center; width:100%; height:100%;}
+  .pic img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; object-position:center; border-radius:12px;}
 
   .grid{display:grid; gap:26px;}
   .g2{grid-template-columns:repeat(2,1fr);}
@@ -238,10 +238,39 @@
   #sampleForm .hp{position:absolute; left:-9999px; width:1px; height:1px;}
   .proj-hit{display:block; width:100%; padding:0; border:none; background:none; font:inherit; color:inherit; text-align:left; cursor:pointer;}
   h3 .proj-hit{font-weight:700; font-size:19px; line-height:1.12; letter-spacing:-.025em;}
-  dialog.proj{border:none; padding:0; background:transparent; color:inherit; max-width:min(920px, calc(100vw - 32px)); width:100%;}
+  dialog.proj{border:none; padding:0; margin:auto; background:transparent; color:inherit; max-width:min(920px, calc(100vw - 32px)); width:100%;}
   dialog.proj::backdrop{background:rgba(34,44,62,.45);}
+  dialog.proj picture{display:block; text-align:center;}
   .proj-frame{padding:22px; max-height:calc(100vh - 32px); overflow:auto;}
-  .proj-shot{display:block; width:100%; max-height:70vh; object-fit:contain; border-radius:12px;}
+  .proj-shot{display:block; width:auto; height:auto; max-width:100%; max-height:70vh; margin:0 auto; object-fit:contain; object-position:center; border-radius:12px;}
+  .showcase{position:relative; margin-top:44px; overflow:hidden;}
+  .showcase-stage{position:relative; height:560px; perspective:1400px;}
+  .showcase-scene{position:relative; height:100%; transform-style:preserve-3d;}
+  .showcase-scene article{position:absolute; top:18px; left:50%; width:min(340px, 70vw); transform:translateX(-50%); transform-origin:center center; transition:transform .5s ease, opacity .5s ease;}
+  .show-nav{position:absolute; top:46%; z-index:6; width:44px; height:44px; border:none; border-radius:50%; background:var(--bg); color:var(--tx); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2); cursor:pointer; font-size:22px; line-height:1;}
+  .show-nav.prev{left:0;}
+  .show-nav.next{right:0;}
+  .work-more{margin-top:8px;}
+  .work-more article{padding:14px 0; border-top:1px solid rgba(42,52,70,.08); box-shadow:none; background:transparent; border-radius:0;}
+  .work-more .pic{display:none;}
+  .work-more .label{display:inline; margin-right:10px;}
+  .work-more h3{display:inline; margin:0;}
+  .work-more h3 .proj-hit{display:inline; width:auto; font-size:16px;}
+  .work-more p{margin-top:6px;}
+  @media(max-width:760px){
+    .showcase-stage{height:auto; perspective:none;}
+    .showcase-scene{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 12px; transform-style:flat; height:auto;}
+    .showcase-scene article{position:relative; left:auto; top:auto; flex:0 0 84%; width:84%; scroll-snap-align:center; transform:none !important; opacity:1 !important; transition:none;}
+    .show-nav{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .showcase-stage{height:auto; perspective:none;}
+    .showcase-scene{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; overflow:visible; transform-style:flat; height:auto; scroll-snap-type:none;}
+    .showcase-scene article{position:relative; left:auto; top:auto; flex:none; width:auto; transform:none !important; opacity:1 !important; transition:none;}
+    .show-nav{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce) and (max-width:960px){.showcase-scene{grid-template-columns:1fr 1fr;}}
+  @media (prefers-reduced-motion: reduce) and (max-width:640px){.showcase-scene{grid-template-columns:1fr;}}
   details.card summary{cursor:pointer;}
   details.card summary h3{display:inline; margin:0;}
   details.card p{margin-top:12px;}
@@ -437,7 +466,10 @@
   <div class="wrap">
     <p class="eyebrow">Selected work</p>
     <h2>Systems I've built and shipped, <span class="acc">including live products.</span></h2>
-    <div class="grid g3" style="margin-top:44px;">
+    <div class="showcase" id="showcase">
+      <button type="button" class="show-nav prev" id="showPrev" aria-label="Previous project">‹</button>
+      <div class="showcase-stage">
+        <div class="showcase-scene" id="showcaseScene">
 
       <article class="raised card" id="kppsc-prep-pro">
         <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview KPPSC Prep Pro"><picture><source type="image/avif" srcset="assets/opt/kppsc-app-400.avif 400w, assets/opt/kppsc-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/kppsc-app-400.webp 400w, assets/opt/kppsc-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/kppsc-app.png" alt="KPPSC Prep Pro app screen" width="991" height="997" loading="lazy" decoding="async"></picture></button></div>
@@ -471,6 +503,21 @@
         <p>Appointment management for clinics: patient registration, booking, admin approval, and automated reminders.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span></div>
       </article>
+
+      <article class="raised card" id="touchtrace">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview TouchTrace"><picture><source type="image/avif" srcset="assets/opt/touchtrace-app-400.avif 400w, assets/opt/touchtrace-app-800.avif 800w" sizes="(max-width: 760px) 84vw, 340px"><source type="image/webp" srcset="assets/opt/touchtrace-app-400.webp 400w, assets/opt/touchtrace-app-800.webp 800w" sizes="(max-width: 760px) 84vw, 340px"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" width="1435" height="1928" loading="lazy" decoding="async"></picture></button></div>
+        <span class="label">LIVE PRODUCT · CLIENT</span>
+        <h3><button type="button" class="proj-hit">TouchTrace</button></h3>
+        <p>A documentation platform for a massage and bodywork therapy client, with voice capture, AI structuring, and scroll-driven design.</p>
+        <div style="margin-top:14px;"><span class="tag">Next.js</span><span class="tag">GSAP</span><span class="tag">Three.js</span></div>
+        <a href="https://touchtrace.vercel.app/" target="_blank" rel="noopener" class="acc" style="font-weight:600; font-size:14px;">See it live →</a>
+      </article>
+
+        </div>
+      </div>
+      <button type="button" class="show-nav next" id="showNext" aria-label="Next project">›</button>
+    </div>
+    <div class="work-more">
 
       <article class="raised card" id="crm-lead-capture">
         <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview CRM Lead-Capture and Enrichment"><picture><source type="image/avif" srcset="assets/opt/crm-lead-capture-400.avif 400w, assets/opt/crm-lead-capture-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/crm-lead-capture-400.webp 400w, assets/opt/crm-lead-capture-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" width="1386" height="753" loading="lazy" decoding="async"></picture></button></div>
@@ -510,15 +557,6 @@
         <h3><button type="button" class="proj-hit">WhatsApp Content Autopilot</button></h3>
         <p>A voice note or text in WhatsApp becomes a drafted post with an image, sent back for one-tap approval, then published.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">WhatsApp API</span><span class="tag">Facebook API</span></div>
-      </article>
-
-      <article class="raised card" id="touchtrace">
-        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview TouchTrace"><picture><source type="image/avif" srcset="assets/opt/touchtrace-app-400.avif 400w, assets/opt/touchtrace-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/touchtrace-app-400.webp 400w, assets/opt/touchtrace-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" width="1435" height="1928" loading="lazy" decoding="async"></picture></button></div>
-        <span class="label">LIVE PRODUCT · CLIENT</span>
-        <h3><button type="button" class="proj-hit">TouchTrace</button></h3>
-        <p>A documentation platform for a massage and bodywork therapy client, with voice capture, AI structuring, and scroll-driven design.</p>
-        <div style="margin-top:14px;"><span class="tag">Next.js</span><span class="tag">GSAP</span><span class="tag">Three.js</span></div>
-        <a href="https://touchtrace.vercel.app/" target="_blank" rel="noopener" class="acc" style="font-weight:600; font-size:14px;">See it live →</a>
       </article>
 
     </div>
@@ -1065,7 +1103,58 @@
   })();
 
   (function(){
-    var cards = Array.prototype.slice.call(document.querySelectorAll('#work .grid article'));
+    var root = document.getElementById('showcase');
+    var scene = document.getElementById('showcaseScene');
+    if(!root || !scene) return;
+    var cards = scene.querySelectorAll('article');
+    var index = 0;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var narrow = window.matchMedia('(max-width: 760px)');
+    var timer = null;
+    function flat(){ return reduce.matches || narrow.matches; }
+    function layout(){
+      for(var n = 0; n < cards.length; n++){
+        var card = cards[n];
+        if(flat()){
+          card.style.transform = '';
+          card.style.opacity = '';
+          card.style.zIndex = '';
+          continue;
+        }
+        var offset = n - index;
+        if(offset > cards.length / 2) offset -= cards.length;
+        if(offset < -cards.length / 2) offset += cards.length;
+        var abs = Math.abs(offset);
+        card.style.transform = 'translateX(calc(-50% + ' + (offset * 190) + 'px)) translateZ(' + (abs === 0 ? 40 : -110 * abs) + 'px) rotateY(' + (offset * -28) + 'deg)';
+        card.style.opacity = abs > 2 ? '0' : String(1 - abs * 0.28);
+        card.style.zIndex = String(10 - abs);
+      }
+    }
+    function go(delta){
+      index = (index + delta + cards.length) % cards.length;
+      layout();
+    }
+    function blocked(){
+      var dialog = document.getElementById('projDialog');
+      return flat() || root.matches(':hover') || root.contains(document.activeElement) || document.visibilityState === 'hidden' || (dialog && dialog.open);
+    }
+    function arm(){
+      if(timer) clearInterval(timer);
+      timer = null;
+      layout();
+      if(flat()) return;
+      timer = setInterval(function(){ if(!blocked()) go(1); }, 7000);
+    }
+    document.getElementById('showPrev').addEventListener('click', function(){ go(-1); });
+    document.getElementById('showNext').addEventListener('click', function(){ go(1); });
+    reduce.addEventListener('change', arm);
+    narrow.addEventListener('change', arm);
+    document.addEventListener('visibilitychange', arm);
+    arm();
+  })();
+
+  (function(){
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#work article[id]'));
     var dialog = document.getElementById('projDialog');
     if(!cards.length || !dialog) return;
     var LARGE = {
