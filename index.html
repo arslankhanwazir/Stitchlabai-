@@ -576,7 +576,11 @@
 <script>
   var CAL_URL = 'https://calendly.com/arslankhanwazir/new-meeting?background_color=e8edf4&text_color=222c3e&primary_color=2f6fe0';
 
-  function track(name, label){ if(typeof gtag === 'function') gtag('event', name, { link_text: label }); }
+  function track(name, label){
+    if(typeof gtag !== 'function') return;
+    if(label) gtag('event', name, { link_text: label });
+    else gtag('event', name);
+  }
 
   function openCal(e){
     if(e && e.preventDefault) e.preventDefault();
@@ -677,7 +681,7 @@
         });
       }
       result.classList.add('on');
-      track('try_question', question.slice(0, 80));
+      track('try_question');
     }
 
     btn.addEventListener('click', function(){ ask(input.value); });
