@@ -236,6 +236,12 @@
   #sampleForm textarea.inset{min-height:110px; resize:vertical;}
   #sampleForm .field-err{margin:0 0 12px; font-size:13px; color:var(--tx);}
   #sampleForm .hp{position:absolute; left:-9999px; width:1px; height:1px;}
+  .proj-hit{display:block; width:100%; padding:0; border:none; background:none; font:inherit; color:inherit; text-align:left; cursor:pointer;}
+  h3 .proj-hit{font-weight:700; font-size:19px; line-height:1.12; letter-spacing:-.025em;}
+  dialog.proj{border:none; padding:0; background:transparent; color:inherit; max-width:min(920px, calc(100vw - 32px)); width:100%;}
+  dialog.proj::backdrop{background:rgba(34,44,62,.45);}
+  .proj-frame{padding:22px; max-height:calc(100vh - 32px); overflow:auto;}
+  .proj-shot{display:block; width:100%; max-height:70vh; object-fit:contain; border-radius:12px;}
 
   @media (prefers-reduced-motion: reduce){ .caret, .live i, .status.on::before{animation:none;} .src{transition:none;} }
 </style>
@@ -430,83 +436,83 @@
     <h2>Systems I've built and shipped, <span class="acc">including live products.</span></h2>
     <div class="grid g3" style="margin-top:44px;">
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/kppsc-app-400.avif 400w, assets/opt/kppsc-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/kppsc-app-400.webp 400w, assets/opt/kppsc-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/kppsc-app.png" alt="KPPSC Prep Pro app screen" width="991" height="997" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="kppsc-prep-pro">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview KPPSC Prep Pro"><picture><source type="image/avif" srcset="assets/opt/kppsc-app-400.avif 400w, assets/opt/kppsc-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/kppsc-app-400.webp 400w, assets/opt/kppsc-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/kppsc-app.png" alt="KPPSC Prep Pro app screen" width="991" height="997" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">LIVE PRODUCT</span>
-        <h3>KPPSC Prep Pro</h3>
+        <h3><button type="button" class="proj-hit">KPPSC Prep Pro</button></h3>
         <p>An exam-prep app for Pakistan's public-sector exams, with an AI tutor and a question bank of 2,231 questions.</p>
         <div style="margin-top:14px;"><span class="tag">AI tutor</span><span class="tag">RAG</span><span class="tag">Mobile UI</span></div>
         <a href="https://arslankhanwazir.github.io/kppsc/app.html" target="_blank" rel="noopener" class="acc" style="font-weight:600; font-size:14px;">Open the app →</a>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/pipeline-autopilot-400.avif 400w, assets/opt/pipeline-autopilot-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/pipeline-autopilot-400.webp 400w, assets/opt/pipeline-autopilot-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/pipeline-autopilot.png" alt="Pipeline Autopilot workflow" width="1336" height="708" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="pipeline-autopilot">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview Pipeline Autopilot"><picture><source type="image/avif" srcset="assets/opt/pipeline-autopilot-400.avif 400w, assets/opt/pipeline-autopilot-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/pipeline-autopilot-400.webp 400w, assets/opt/pipeline-autopilot-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/pipeline-autopilot.png" alt="Pipeline Autopilot workflow" width="1336" height="708" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">PRODUCTION SYSTEM</span>
-        <h3>Pipeline Autopilot</h3>
+        <h3><button type="button" class="proj-hit">Pipeline Autopilot</button></h3>
         <p>Lead scoring and routing on self-hosted n8n in queue mode with Redis and Python workers. The engine behind Nodespark.ai.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Redis</span><span class="tag">HubSpot</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/apex-outreach-400.avif 400w, assets/opt/apex-outreach-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/apex-outreach-400.webp 400w, assets/opt/apex-outreach-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/apex-outreach.png" alt="Apex Outreach Engine dashboard" width="1408" height="768" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="apex-outreach-engine">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview Apex Outreach Engine"><picture><source type="image/avif" srcset="assets/opt/apex-outreach-400.avif 400w, assets/opt/apex-outreach-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/apex-outreach-400.webp 400w, assets/opt/apex-outreach-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/apex-outreach.png" alt="Apex Outreach Engine dashboard" width="1408" height="768" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>Apex Outreach Engine</h3>
+        <h3><button type="button" class="proj-hit">Apex Outreach Engine</button></h3>
         <p>Finds recently closed local businesses, analyses public reviews, and sends a teaser report to a nearby competitor on a weekly schedule.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Groq LLM</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/medibook-400.avif 400w, assets/opt/medibook-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/medibook-400.webp 400w, assets/opt/medibook-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/medibook.png" alt="MediBook appointment platform" width="1377" height="736" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="medibook">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview MediBook"><picture><source type="image/avif" srcset="assets/opt/medibook-400.avif 400w, assets/opt/medibook-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/medibook-400.webp 400w, assets/opt/medibook-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/medibook.png" alt="MediBook appointment platform" width="1377" height="736" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>MediBook</h3>
+        <h3><button type="button" class="proj-hit">MediBook</button></h3>
         <p>Appointment management for clinics: patient registration, booking, admin approval, and automated reminders.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/crm-lead-capture-400.avif 400w, assets/opt/crm-lead-capture-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/crm-lead-capture-400.webp 400w, assets/opt/crm-lead-capture-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" width="1386" height="753" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="crm-lead-capture">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview CRM Lead-Capture and Enrichment"><picture><source type="image/avif" srcset="assets/opt/crm-lead-capture-400.avif 400w, assets/opt/crm-lead-capture-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/crm-lead-capture-400.webp 400w, assets/opt/crm-lead-capture-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" width="1386" height="753" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>CRM Lead-Capture &amp; Enrichment</h3>
+        <h3><button type="button" class="proj-hit">CRM Lead-Capture &amp; Enrichment</button></h3>
         <p>An AI agent reads inbound emails, extracts contact details and requirements, validates them, and writes clean records to HubSpot.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">HubSpot</span><span class="tag">OpenAI</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/executive-outreach-400.avif 400w, assets/opt/executive-outreach-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/executive-outreach-400.webp 400w, assets/opt/executive-outreach-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/executive-outreach.png" alt="Executive outreach engine dashboard" width="1369" height="735" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="executive-outreach-engine">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview Executive Outreach Engine"><picture><source type="image/avif" srcset="assets/opt/executive-outreach-400.avif 400w, assets/opt/executive-outreach-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/executive-outreach-400.webp 400w, assets/opt/executive-outreach-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/executive-outreach.png" alt="Executive outreach engine dashboard" width="1369" height="735" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>Executive Outreach Engine</h3>
+        <h3><button type="button" class="proj-hit">Executive Outreach Engine</button></h3>
         <p>Aggregates job listings across platforms, matches each post against real experience with an AI agent, and sends personalised outreach.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Vector DB</span><span class="tag">Docker</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/contact-to-booking-400.avif 400w, assets/opt/contact-to-booking-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/contact-to-booking-400.webp 400w, assets/opt/contact-to-booking-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/contact-to-booking.png" alt="Contact-to-booking workflow" width="1357" height="715" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="contact-to-booking">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview Contact-to-Booking Automation"><picture><source type="image/avif" srcset="assets/opt/contact-to-booking-400.avif 400w, assets/opt/contact-to-booking-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/contact-to-booking-400.webp 400w, assets/opt/contact-to-booking-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/contact-to-booking.png" alt="Contact-to-booking workflow" width="1357" height="715" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>Contact-to-Booking Automation</h3>
+        <h3><button type="button" class="proj-hit">Contact-to-Booking Automation</button></h3>
         <p>A form triggers an AI agent that reads company size and urgency, then sends qualified leads a booking link and routes the rest to nurture.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">Cal.com</span><span class="tag">HubSpot</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/n8n-onboarding-400.avif 400w, assets/opt/n8n-onboarding-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/n8n-onboarding-400.webp 400w, assets/opt/n8n-onboarding-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/n8n-onboarding.png" alt="Agency onboarding engine workflow" width="1968" height="1200" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="autopilot-onboarding-engine">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview Autopilot Onboarding Engine"><picture><source type="image/avif" srcset="assets/opt/n8n-onboarding-400.avif 400w, assets/opt/n8n-onboarding-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/n8n-onboarding-400.webp 400w, assets/opt/n8n-onboarding-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/n8n-onboarding.png" alt="Agency onboarding engine workflow" width="1968" height="1200" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>Autopilot Onboarding Engine</h3>
+        <h3><button type="button" class="proj-hit">Autopilot Onboarding Engine</button></h3>
         <p>A closed-won deal in HubSpot creates the ClickUp space, injects tasks, and drafts a kickoff brief with an LLM.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">HubSpot</span><span class="tag">ClickUp</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/whatsapp-autopilot-400.avif 400w, assets/opt/whatsapp-autopilot-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/whatsapp-autopilot-400.webp 400w, assets/opt/whatsapp-autopilot-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/whatsapp-autopilot.png" alt="WhatsApp content autopilot workflow" width="1439" height="648" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="whatsapp-content-autopilot">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview WhatsApp Content Autopilot"><picture><source type="image/avif" srcset="assets/opt/whatsapp-autopilot-400.avif 400w, assets/opt/whatsapp-autopilot-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/whatsapp-autopilot-400.webp 400w, assets/opt/whatsapp-autopilot-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/whatsapp-autopilot.png" alt="WhatsApp content autopilot workflow" width="1439" height="648" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">SYSTEM</span>
-        <h3>WhatsApp Content Autopilot</h3>
+        <h3><button type="button" class="proj-hit">WhatsApp Content Autopilot</button></h3>
         <p>A voice note or text in WhatsApp becomes a drafted post with an image, sent back for one-tap approval, then published.</p>
         <div style="margin-top:14px;"><span class="tag">n8n</span><span class="tag">WhatsApp API</span><span class="tag">Facebook API</span></div>
       </article>
 
-      <article class="raised card">
-        <div class="inset pic"><picture><source type="image/avif" srcset="assets/opt/touchtrace-app-400.avif 400w, assets/opt/touchtrace-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/touchtrace-app-400.webp 400w, assets/opt/touchtrace-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" width="1435" height="1928" loading="lazy" decoding="async"></picture></div>
+      <article class="raised card" id="touchtrace">
+        <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview TouchTrace"><picture><source type="image/avif" srcset="assets/opt/touchtrace-app-400.avif 400w, assets/opt/touchtrace-app-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/touchtrace-app-400.webp 400w, assets/opt/touchtrace-app-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="touchtrace-app.png" alt="TouchTrace documentation platform" width="1435" height="1928" loading="lazy" decoding="async"></picture></button></div>
         <span class="label">LIVE PRODUCT · CLIENT</span>
-        <h3>TouchTrace</h3>
+        <h3><button type="button" class="proj-hit">TouchTrace</button></h3>
         <p>A documentation platform for a massage and bodywork therapy client, with voice capture, AI structuring, and scroll-driven design.</p>
         <div style="margin-top:14px;"><span class="tag">Next.js</span><span class="tag">GSAP</span><span class="tag">Three.js</span></div>
         <a href="https://touchtrace.vercel.app/" target="_blank" rel="noopener" class="acc" style="font-weight:600; font-size:14px;">See it live →</a>
@@ -632,6 +638,27 @@
   <div class="wrap">© 2026 StitchLab AI — Arslan Khan · Peshawar, PK · Remote worldwide</div>
 </footer>
 
+<dialog id="projDialog" class="proj" aria-labelledby="projTitle">
+  <div class="raised proj-frame">
+    <picture>
+      <source id="projAvif" type="image/avif">
+      <source id="projWebp" type="image/webp">
+      <img id="projImg" class="proj-shot" alt="">
+    </picture>
+    <p style="margin-top:12px;"><a id="projFull" class="acc" href="" target="_blank" rel="noopener" style="font-weight:600; font-size:14px;">Open full image</a></p>
+    <span class="label" id="projLabel"></span>
+    <h3 id="projTitle"></h3>
+    <p id="projDesc"></p>
+    <div id="projTags" style="margin-top:14px;"></div>
+    <p id="projLink" style="margin-top:14px;"></p>
+    <div class="btn-row">
+      <button type="button" class="btn alt" id="projPrev">Previous</button>
+      <button type="button" class="btn alt" id="projNext">Next</button>
+      <button type="button" class="btn" id="projBuild">Build something like this</button>
+      <button type="button" class="btn alt" id="projClose">Close</button>
+    </div>
+  </div>
+</dialog>
 <script>
   var CAL_URL = 'https://calendly.com/arslankhanwazir/new-meeting?background_color=e8edf4&text_color=222c3e&primary_color=2f6fe0';
   var calendlyLoading = null;
@@ -987,6 +1014,99 @@
       var n = 0;
       while(true){ await play(scenarios[n % scenarios.length]); n++; }
     })();
+  })();
+
+  (function(){
+    var cards = Array.prototype.slice.call(document.querySelectorAll('#work .grid article'));
+    var dialog = document.getElementById('projDialog');
+    if(!cards.length || !dialog) return;
+    var LARGE = {
+      'assets/kppsc-app.png': ['assets/opt/kppsc-app-991.avif', 'assets/opt/kppsc-app-991.webp'],
+      'assets/pipeline-autopilot.png': ['assets/opt/pipeline-autopilot-1336.avif', 'assets/opt/pipeline-autopilot-1336.webp'],
+      'assets/apex-outreach.png': ['assets/opt/apex-outreach-1400.avif', 'assets/opt/apex-outreach-1400.webp'],
+      'assets/medibook.png': ['assets/opt/medibook-1377.avif', 'assets/opt/medibook-1377.webp'],
+      'assets/crm-lead-capture.png': ['assets/opt/crm-lead-capture-1386.avif', 'assets/opt/crm-lead-capture-1386.webp'],
+      'assets/executive-outreach.png': ['assets/opt/executive-outreach-1369.avif', 'assets/opt/executive-outreach-1369.webp'],
+      'assets/contact-to-booking.png': ['assets/opt/contact-to-booking-1357.avif', 'assets/opt/contact-to-booking-1357.webp'],
+      'assets/n8n-onboarding.png': ['assets/opt/n8n-onboarding-1400.avif', 'assets/opt/n8n-onboarding-1400.webp'],
+      'assets/whatsapp-autopilot.png': ['assets/opt/whatsapp-autopilot-1400.avif', 'assets/opt/whatsapp-autopilot-1400.webp'],
+      'touchtrace-app.png': ['assets/opt/touchtrace-app-1400.avif', 'assets/opt/touchtrace-app-1400.webp']
+    };
+    var current = 0;
+    var lastFocus = null;
+    function show(index, trigger){
+      var card = cards[index];
+      if(!card) return;
+      current = index;
+      if(trigger) lastFocus = trigger;
+      var img = card.querySelector('img');
+      var src = img.getAttribute('src');
+      var large = LARGE[src] || ['', ''];
+      document.getElementById('projAvif').setAttribute('srcset', large[0]);
+      document.getElementById('projWebp').setAttribute('srcset', large[1]);
+      var shot = document.getElementById('projImg');
+      shot.alt = img.getAttribute('alt') || '';
+      shot.onerror = function(){ shot.onerror = null; shot.src = src; };
+      shot.src = large[1] || src;
+      var full = document.getElementById('projFull');
+      full.href = src;
+      document.getElementById('projLabel').textContent = card.querySelector('.label').textContent;
+      document.getElementById('projTitle').textContent = card.querySelector('h3').textContent;
+      document.getElementById('projDesc').textContent = card.querySelector('p').textContent;
+      var tags = document.getElementById('projTags');
+      tags.innerHTML = '';
+      card.querySelectorAll('.tag').forEach(function(tag){
+        var chip = document.createElement('span');
+        chip.className = 'tag';
+        chip.textContent = tag.textContent;
+        tags.appendChild(chip);
+      });
+      var linkBox = document.getElementById('projLink');
+      linkBox.innerHTML = '';
+      var link = card.querySelector('a.acc');
+      if(link){
+        var a = document.createElement('a');
+        a.href = link.getAttribute('href');
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.className = 'acc';
+        a.style.fontWeight = '600';
+        a.style.fontSize = '14px';
+        a.textContent = link.textContent;
+        linkBox.appendChild(a);
+      }
+      var wasOpen = dialog.open;
+      if(!wasOpen) dialog.showModal();
+      document.body.style.overflow = 'hidden';
+      if(location.hash !== '#' + card.id) history.replaceState(null, '', '#' + card.id);
+      track('project_open', card.querySelector('h3').textContent.trim());
+      if(!wasOpen) document.getElementById('projClose').focus();
+    }
+    cards.forEach(function(card, index){
+      card.querySelectorAll('.proj-hit').forEach(function(btn){
+        btn.addEventListener('click', function(){ show(index, btn); });
+      });
+    });
+    function step(delta){ show((current + delta + cards.length) % cards.length); }
+    document.getElementById('projPrev').addEventListener('click', function(){ step(-1); });
+    document.getElementById('projNext').addEventListener('click', function(){ step(1); });
+    document.getElementById('projClose').addEventListener('click', function(){ dialog.close(); });
+    document.getElementById('projBuild').addEventListener('click', function(e){ openCal(e); });
+    dialog.addEventListener('click', function(e){ if(e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', function(){
+      document.body.style.overflow = '';
+      if(cards[current] && location.hash === '#' + cards[current].id) history.replaceState(null, '', location.pathname + location.search);
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    });
+    dialog.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); step(-1); }
+      if(e.key === 'ArrowRight'){ e.preventDefault(); step(1); }
+    });
+    if(location.hash){
+      for(var i = 0; i < cards.length; i++){
+        if('#' + cards[i].id === location.hash){ show(i, cards[i].querySelector('.proj-hit')); break; }
+      }
+    }
   })();
 </script>
 </body>
