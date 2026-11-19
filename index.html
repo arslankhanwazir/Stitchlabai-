@@ -25,15 +25,45 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "StitchLab AI",
-  "alternateName": "Stitch Lab",
-  "url": "https://stitchlabai.space/",
-  "description": "Private AI knowledge assistants built on a company's own documents, with source citations.",
-  "founder": { "@type": "Person", "name": "Arslan Khan", "url": "https://linkedin.com/in/arslankhanwazir" },
-  "areaServed": "Worldwide",
-  "address": { "@type": "PostalAddress", "addressLocality": "Peshawar", "addressRegion": "Khyber Pakhtunkhwa", "addressCountry": "PK" },
-  "priceRange": "$1,500 - $2,500"
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://stitchlabai.space/#business",
+      "name": "StitchLab AI",
+      "alternateName": "Stitch Lab",
+      "url": "https://stitchlabai.space/",
+      "description": "Private AI knowledge assistants built on a company's own documents, with source citations.",
+      "founder": { "@id": "https://stitchlabai.space/#arslan-khan" },
+      "areaServed": "Worldwide",
+      "address": { "@type": "PostalAddress", "addressLocality": "Peshawar", "addressRegion": "Khyber Pakhtunkhwa", "addressCountry": "PK" },
+      "priceRange": "$1,500 - $2,500",
+      "provider": { "@id": "https://stitchlabai.space/#organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://stitchlabai.space/#organization",
+      "name": "StitchLab AI",
+      "alternateName": "Stitch Lab",
+      "url": "https://stitchlabai.space/",
+      "founder": { "@id": "https://stitchlabai.space/#arslan-khan" },
+      "sameAs": [
+        "https://linkedin.com/in/arslankhanwazir",
+        "https://contra.com/arslan_khan_4tkkmb7r"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://stitchlabai.space/#arslan-khan",
+      "name": "Arslan Khan",
+      "jobTitle": "AI automation architect",
+      "url": "https://linkedin.com/in/arslankhanwazir",
+      "worksFor": { "@id": "https://stitchlabai.space/#organization" },
+      "sameAs": [
+        "https://linkedin.com/in/arslankhanwazir",
+        "https://contra.com/arslan_khan_4tkkmb7r"
+      ]
+    }
+  ]
 }
 </script>
 
