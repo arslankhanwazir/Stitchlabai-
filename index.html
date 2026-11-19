@@ -383,7 +383,7 @@
         </div>
       </div>
       <form id="sampleForm" novalidate>
-        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true">
         <label class="label" for="sampleName">Name</label>
         <input class="inset" id="sampleName" name="name" type="text" autocomplete="name">
         <p class="field-err" id="errName"></p>
@@ -689,13 +689,13 @@
 <dialog id="projDialog" class="proj" aria-labelledby="projTitle">
   <div class="raised proj-frame">
     <picture>
-      <source id="projAvif" type="image/avif">
-      <source id="projWebp" type="image/webp">
-      <img id="projImg" class="proj-shot" alt="">
+      <source id="projAvif" type="image/avif" srcset="assets/opt/kppsc-app-991.avif">
+      <source id="projWebp" type="image/webp" srcset="assets/opt/kppsc-app-991.webp">
+      <img id="projImg" class="proj-shot" alt="KPPSC Prep Pro app screen" src="assets/opt/kppsc-app-991.webp">
     </picture>
     <p style="margin-top:12px;"><a id="projFull" class="acc" href="" target="_blank" rel="noopener" style="font-weight:600; font-size:14px;">Open full image</a></p>
     <span class="label" id="projLabel"></span>
-    <h3 id="projTitle"></h3>
+    <h3 id="projTitle">KPPSC Prep Pro</h3>
     <p id="projDesc"></p>
     <div id="projTags" style="margin-top:14px;"></div>
     <p id="projLink" style="margin-top:14px;"></p>
@@ -1147,8 +1147,12 @@
       if(lastFocus && lastFocus.focus) lastFocus.focus();
     });
     dialog.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ dialog.close(); }
       if(e.key === 'ArrowLeft'){ e.preventDefault(); step(-1); }
       if(e.key === 'ArrowRight'){ e.preventDefault(); step(1); }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && dialog.open) dialog.close();
     });
     if(location.hash){
       for(var i = 0; i < cards.length; i++){
