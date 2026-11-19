@@ -220,6 +220,12 @@
 
   .quote{padding:40px; max-width:820px;}
   .quote p.q2{font-size:20px; color:var(--tx); line-height:1.6; margin-bottom:22px;}
+  .quote-grid{margin-top:8px; grid-template-columns:repeat(3,1fr);}
+  .quote-grid .quote{max-width:none; height:100%; border:1px solid rgba(42,52,70,.12);}
+  .stars{margin:0 0 14px; color:#c6a035; font-size:20px; letter-spacing:.16em; line-height:1;}
+  .example-note{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--acc); margin:0 0 12px;}
+  .perspective{margin:0; font-size:13px;}
+  @media(max-width:900px){.quote-grid{grid-template-columns:1fr;}}
   .who{display:flex; align-items:center; gap:14px;}
   .av{width:46px; height:46px; border-radius:50%; background:var(--acc); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;}
 
@@ -250,13 +256,14 @@
   .show-nav{position:absolute; top:46%; z-index:6; width:44px; height:44px; border:none; border-radius:50%; background:var(--bg); color:var(--tx); box-shadow:6px 6px 12px var(--sh1), -6px -6px 12px var(--sh2); cursor:pointer; font-size:22px; line-height:1;}
   .show-nav.prev{left:0;}
   .show-nav.next{right:0;}
-  .work-more{margin-top:8px;}
-  .work-more article{padding:14px 0; border-top:1px solid rgba(42,52,70,.08); box-shadow:none; background:transparent; border-radius:0;}
+  .work-more{margin-top:48px;}
+  .work-more .more-head{font-size:clamp(22px,2.4vw,28px); margin:0 0 6px;}
+  .work-more article{padding:26px 0 22px; border-top:1px solid rgba(42,52,70,.08); box-shadow:none; background:transparent; border-radius:0;}
   .work-more .pic{display:none;}
-  .work-more .label{display:inline; margin-right:10px;}
-  .work-more h3{display:inline; margin:0;}
-  .work-more h3 .proj-hit{display:inline; width:auto; font-size:16px;}
-  .work-more p{margin-top:6px;}
+  .work-more .label{display:none;}
+  .work-more h3{display:block; margin:0 0 8px;}
+  .work-more h3 .proj-hit{display:inline; width:auto; font-size:18px;}
+  .work-more p{margin:0 0 12px;}
   @media(max-width:760px){
     .showcase-stage{height:auto; perspective:none;}
     .showcase-scene{display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding:4px 4px 12px; transform-style:flat; height:auto;}
@@ -517,6 +524,7 @@
       <button type="button" class="show-nav next" id="showNext" aria-label="Next project">›</button>
     </div>
     <div class="work-more">
+      <h3 class="more-head">Additional systems I've built</h3>
 
       <article class="raised card" id="crm-lead-capture">
         <div class="inset pic"><button type="button" class="proj-hit" aria-label="Preview CRM Lead-Capture and Enrichment"><picture><source type="image/avif" srcset="assets/opt/crm-lead-capture-400.avif 400w, assets/opt/crm-lead-capture-800.avif 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><source type="image/webp" srcset="assets/opt/crm-lead-capture-400.webp 400w, assets/opt/crm-lead-capture-800.webp 800w" sizes="(max-width: 640px) 92vw, (max-width: 960px) 46vw, 350px"><img src="assets/crm-lead-capture.png" alt="CRM lead capture pipeline" width="1386" height="753" loading="lazy" decoding="async"></picture></button></div>
@@ -674,9 +682,25 @@
 <section id="testimonial">
   <div class="wrap">
     <p class="eyebrow">Client feedback</p>
-    <div class="raised quote">
-      <p class="q2">"We stopped losing leads in the CRM the week this went live. It just quietly does the job every day."</p>
-      <div class="who"><div class="av">G</div><div><b style="color:var(--tx);">Gregory O.</b><p style="font-size:13px;">Co-founder, Nodespark.ai</p></div></div>
+    <h2>A real client note, with labelled examples beside it.</h2>
+    <div class="grid g2 quote-grid">
+      <div class="raised quote">
+        <p class="stars" role="img" aria-label="Five stars">★★★★★</p>
+        <p class="q2">"We stopped losing leads in the CRM the week this went live. It just quietly does the job every day."</p>
+        <div class="who"><div class="av">G</div><div><b style="color:var(--tx);">Gregory O.</b><p style="font-size:13px;">Co-founder, Nodespark.ai</p></div></div>
+      </div>
+      <div class="raised quote">
+        <p class="example-note">Illustrative example · not a customer review</p>
+        <p class="stars" role="img" aria-label="Five stars">★★★★★</p>
+        <p class="q2">Example wording from a Western agency perspective: the team stopped asking seniors for answers that were already written in the playbook.</p>
+        <p class="perspective">Western Europe · agency operations</p>
+      </div>
+      <div class="raised quote">
+        <p class="example-note">Illustrative example · not a customer review</p>
+        <p class="stars" role="img" aria-label="Five stars">★★★★★</p>
+        <p class="q2">Example wording from a South Asian operations perspective: field staff could check the approved process without waiting on a coordinator.</p>
+        <p class="perspective">South Asia · operations team</p>
+      </div>
     </div>
   </div>
 </section>
