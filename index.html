@@ -284,10 +284,10 @@
 
   @media (prefers-reduced-motion: reduce){ .caret, .live i, .status.on::before{animation:none;} .src{transition:none;} }
 </style>
-<!-- Microsoft Clarity. Replace the project ID, then uncomment to enable. Loads after idle.
+<!-- Microsoft Clarity -->
 <script>
 (function(){
-  var CLARITY_ID = "[[NEEDS_FROM_ARSLAN: Clarity project ID]]";
+  var CLARITY_ID = "zguda9ffwj";
   if(!CLARITY_ID || CLARITY_ID.indexOf("NEEDS_FROM_ARSLAN") !== -1) return;
   function load(){
     (function(c,l,a,r,i,t,y){
@@ -300,7 +300,6 @@
   else setTimeout(load, 1);
 })();
 </script>
--->
 </head>
 <body>
 
@@ -376,7 +375,7 @@
         <div class="bubble-bot" id="resA"></div>
         <div class="cites" id="resC"></div>
       </div>
-      <p class="note">Sample documents written for this demo. Answers are found by matching your question to passages, so they show exactly which text was used.</p>
+      <p class="note">Fictional sample company, Brightpath Media. Sample documents written for this demo. Answers are found by matching your question to passages, so they show exactly which text was used.</p>
     </div>
   </div>
 </section>
@@ -440,6 +439,7 @@
           <option>50+</option>
         </select>
         <p class="field-err" id="errSize"></p>
+        <label class="consent"><input type="checkbox" name="consent" required> I agree to receive the sample report and emails from StitchLab AI. I can unsubscribe at any time. See the <a href="/pages/privacy.html">privacy notice</a>.</label>
         <button class="btn" type="submit">Request my free sample</button>
         <p class="note" id="sampleStatus" aria-live="polite"></p>
         <p class="note">Please don't send confidential documents here. We agree secure sharing on the call.</p>
@@ -742,7 +742,10 @@
 </section>
 
 <footer>
-  <div class="wrap">© 2026 StitchLab AI — Arslan Khan · Peshawar, PK · Remote worldwide</div>
+  <div class="wrap">
+    © 2026 StitchLab AI — Arslan Khan · Peshawar, PK · Remote worldwide
+    <p><a href="/pages/privacy.html">Privacy</a> · <a href="/pages/terms.html">Terms</a></p>
+  </div>
 </footer>
 
 <dialog id="projDialog" class="proj" aria-labelledby="projTitle">
